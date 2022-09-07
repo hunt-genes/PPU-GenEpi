@@ -1,17 +1,17 @@
 
-[Precourse materials]("SMED 8020 - pre-course preparations 2022.pdf")
+[Precourse materials]("PPU Gen Epi - pre-course preparations 2022.pdf")
 
-# SMED8020 Practicals
+# PPU Genetic Epidemology Course - Practicals
 
-[Day 1 - Downloads and setup](Day1)
+[Day 1 - Pen and paper exercises](Day1)
 
 [Day 2 - QC, data preparation and GWAS](Day2)
 
-[Day 3 - GWAS meta-analysis](Day3)
+[Day 3 - PRS calculation and analysis](Day3)
 
-[Day 4 - PRS calculation and analysis](Day4)
+[Day 4 - Mendelian randomization](Day4)
 
-[Day 5 - Mendelian randomization](Day5)
+[Day 5 - GWAS meta-analysis](Day5)
 
 # Required data
 [Download here](https://ntnu.box.com/s/d74fob6vo86834tuvtbesrt3hjqih0sh)
