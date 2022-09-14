@@ -8,6 +8,6 @@
 To join the quiz: Go to https://kahoot.it on your phone, enter the code given by the lecturer, enter your preferred (nick) name.
 
 ### Part 2: Pen and paper exercises
-<br> HWE
+HWE
 <br> LD
 <br> Codon table
