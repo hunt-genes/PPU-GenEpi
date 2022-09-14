@@ -19,7 +19,7 @@ https://cran.uib.no/
 2) RStudio
 https://www.rstudio.com/products/rstudio/download/
 3) Download the practical
-https://gitlab.com/huntgenes/SMED8020/tree/master/Day5
+https://github.com/hunt-genes/PPU-GenEpi/
 
 Please follow the instructions below to download the practical.
 Clever clogs can use the 'git clone' command from the command line 
