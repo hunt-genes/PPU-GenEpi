@@ -1,4 +1,4 @@
-# DAY 3 - Meta-analysis for quantitative traits using METAL
+# DAY 5 - Meta-analysis for quantitative traits using METAL
 
 ## FOCUS and LEARNING GOALS
 
