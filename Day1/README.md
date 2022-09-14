@@ -5,10 +5,10 @@
 
 ### Part 1: Kahoot! quiz:
 
-Go to https://kahoot.it on your phone
-Enter the code given by the lecturer and enter your (nick) name to join the quiz.
+To join the quiz: Go to https://kahoot.it on your phone, enter the code given by the lecturer, enter your preferred (nick) name.
 
 ### Part 2: Pen and paper exercises
+
 HWE
 LD
 Codon table
