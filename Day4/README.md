@@ -1,4 +1,4 @@
-# DAY 5 - MR Practicals
+# DAY 4 - MR Practicals
 
 ## Description of the practicals
 
