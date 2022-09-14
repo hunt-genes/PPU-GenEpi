@@ -1,4 +1,4 @@
-# DAY 4 - Practical Exercise – Polygenic Risk Scores
+# DAY 3 - Practical Exercise – Polygenic Risk Scores
 ## Overview
 In this practical, we will generate at polygenic risk score (PRS) for height and see how much variation in height it explains. This practical is a reduced set of analyses provided in the tutorial by Shing Wan Choi and colleagues, which can be found at the following link [PRS Guide](https://choishingwan.github.io/PRS-Tutorial/). Please review the tutorial for more detailed information, and calculation of the PRS using the additional methods that were discussed in the lecture.
 
