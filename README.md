@@ -32,4 +32,7 @@ Download data here:
 Desktop/PPU-GenEpi-main/PLINK   
 Desktop/PPU-GenEpi-main/METAL   
 Add data to Day2/      
-Add data to Day5/     
+Add data to Day5/  
+
+Link to all:
+https://ntnu.box.com/s/65t7h8or43ek4wykn0vc7zr73726e9n2
