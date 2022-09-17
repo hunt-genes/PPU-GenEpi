@@ -596,5 +596,5 @@ The PRS results corresponding to a range of P-value thresholds obtained by appli
             line=2, cex=1.5, font=2, adj=0)
     # write the plot to file
     dev.off()
-    q() # exit R
+    #q() # exit R
     ```
