@@ -17,8 +17,19 @@
 [Download here](https://ntnu.box.com/s/d74fob6vo86834tuvtbesrt3hjqih0sh)
 
 # Required software
+
+Super user   
 1. [R](https://www.r-project.org/) (**version 4.0.0+**)
 2. R Studio: https://www.rstudio.com/products/rstudio/download/
-3. PLINK 1.9 From zip archive for Practical Day 2 here or directly from: https://www.cog-genomics.org/plink2  
-4. For Windows users: Ubuntu from Microsoft Store on your computer: https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ar-ps&gl=ps
+3. For Windows users: Ubuntu from Microsoft Store on your computer: https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ar-ps&gl=ps
+
+User    
+
+4. PLINK 1.9 From zip archive for Practical Day 2 here or directly from: https://www.cog-genomics.org/plink2
 5. [METAL](http://csg.sph.umich.edu/abecasis/metal/download/) from University of Michigan Center for Statistical genetics 
+
+Download data here:    
+Desktop/PPU-GenEpi-main/PLINK
+Desktop/PPU-GenEpi-main/METAL
+Add data to Day2/Day2
+Add data to Day5/Day5
