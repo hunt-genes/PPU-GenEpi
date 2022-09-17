@@ -28,8 +28,8 @@ User
 4. PLINK 1.9 From zip archive for Practical Day 2 here or directly from: https://www.cog-genomics.org/plink2
 5. [METAL](http://csg.sph.umich.edu/abecasis/metal/download/) from University of Michigan Center for Statistical genetics 
 
-Download data here:    
-Desktop/PPU-GenEpi-main/PLINK
-Desktop/PPU-GenEpi-main/METAL
-Add data to Day2/Day2
-Add data to Day5/Day5
+Download data here:       
+Desktop/PPU-GenEpi-main/PLINK   
+Desktop/PPU-GenEpi-main/METAL   
+Add data to Day2/Day2   
+Add data to Day5/Day5   
