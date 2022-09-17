@@ -36,3 +36,12 @@ Add data to Day5/
 
 Link to all:
 https://ntnu.box.com/s/65t7h8or43ek4wykn0vc7zr73726e9n2
+
+Useful folders:
+C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac1\\data.txt   
+C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\BMIestimates-BMI_SNPs.txt    
+C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\CHDestimates-BMI_SNPs.txt.   
+
+
+
+
