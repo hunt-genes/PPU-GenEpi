@@ -124,6 +124,8 @@ Target data consist of individual-level genotype-phenotype data, usually generat
 Unzip the data as follow: (Some might have to run apt install unzip before this command, but you will know if you see an error message)
 
 ```bash
+apt install unzip    
+
 unzip EUR.zip
 ```
 ## QC checklist: Target data
