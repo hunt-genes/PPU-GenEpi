@@ -31,5 +31,5 @@ User
 Download data here:       
 Desktop/PPU-GenEpi-main/PLINK   
 Desktop/PPU-GenEpi-main/METAL   
-Add data to Day2/Day2   
-Add data to Day5/Day5   
+Add data to Day2/      
+Add data to Day5/     
