@@ -56,7 +56,7 @@ We will first introduce some basic linux commands that will be nice to know (cd,
 You need to first make the terminal know where your files are/what directory to work from
 and you can copy this and paste it into your terminal.  
 For example:
-cd /mnt/c/Users/name00/Desktop/SMED8020/2021/Day2/
+cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day2/
 
 Then have a look at the top of the files:
 
@@ -138,7 +138,7 @@ Every subsequent PLINK command will make these two other files together with the
 
 ###### An example in an R session:
 ```  
-setwd("C://Users/name00/Desktop/SMED8020/2021/Day2/")
+setwd("C://Users/User/Desktop/PPU-GenEpi-main/Day2/")
 ```
 
 *The results*:, **results.assoc.logistic**, *can be read into R using the following command:*
