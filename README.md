@@ -42,6 +42,6 @@ C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac1\\data.txt
 C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\BMIestimates-BMI_SNPs.txt    
 C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\CHDestimates-BMI_SNPs.txt.   
 
-
+Add RStudio shortcut to desktop: right click on the exe and sent to -> desktop
 
 
