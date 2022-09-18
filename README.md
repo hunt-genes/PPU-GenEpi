@@ -23,7 +23,8 @@
 Super user   
 1. [R](https://www.r-project.org/) (**version 4.0.0+**)
 2. R Studio: https://www.rstudio.com/products/rstudio/download/
-3. For Windows users: Ubuntu from Microsoft Store on your computer: https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ar-ps&gl=ps
+3. For Windows users: Ubuntu from Microsoft Store on your computer: https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ar-ps&gl=ps   
+[Trouble shooting for Ubuntu](https://github.com/hunt-genes/PPU-GenEpi/blob/main/Troubleshooting_Ubuntu_install_Windows.docx)    
 
 User    
 
@@ -51,5 +52,4 @@ C:\\Users\\Superuser\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\CHDestimates-BMI
 /mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal      
 
 Add RStudio shortcut to desktop: right click on the exe and sent to -> desktop
-
 
