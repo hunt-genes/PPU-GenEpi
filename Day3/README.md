@@ -15,6 +15,7 @@ The first step in Polygenic Risk Score (PRS) analyses is to generate or obtain t
 ## Reading the base data file
 **Height.gwas.txt.gz** is compressed. To read its content, you can type:
 
+Open terminal (meaning Ubuntu in Windows):     
 ```bash
 gunzip -c Height.gwas.txt.gz | head
 ```
@@ -56,11 +57,12 @@ Therefore, SNPs with low MAF and INFO are typically removed before performing do
 We recommend removing SNPs with MAF < 1% and INFO < 0.8 (with very large base sample sizes these thresholds could be reduced if sensitivity checks indicate reliable results).
 These SNP filters can be achieved using the following code:
 
-    ```bash 
-    gunzip -c Height.gwas.txt.gz |\
-    awk 'NR==1 || ($11 > 0.01) && ($10 > 0.8) {print}' |\
-    gzip  > Height.gz
-    ```
+```bash 
+gunzip -c Height.gwas.txt.gz |\
+awk 'NR==1 || ($11 > 0.01) && ($10 > 0.8) {print}' |\
+gzip  > Height.gz
+```
+
 The bash code above does the following:
 
 1. Decompresses and reads the **Height.gwas.txt.gz** file
