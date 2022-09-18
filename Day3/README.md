@@ -279,7 +279,8 @@ This will generate a file called **EUR.QC.sexcheck** containing the F-statistics
     valid <- subset(dat, STATUS=="OK" & FID %in% valid$FID)
     write.table(valid[,c("FID", "IID")], "EUR.QC.valid", row.names=F, col.names=F, sep="\t", quote=F) 
     q() # exit R
-    ```
+```
+
 ??? note "How many samples were excluded due mismatched Sex information?"
 
 ## \# Sample overlap
