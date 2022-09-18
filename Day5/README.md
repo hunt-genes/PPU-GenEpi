@@ -153,11 +153,11 @@ A shell wrapper script will be used to create the config file needed to run META
 
 e.g. `bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf`    
 
-3.2. Run metal with the config file (this should take less than 20 minutes)
+3.2. Run metal with the config file (this should take less than 20 minutes)    
 `metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal`
-`metal LDL_METAL.conf > LDL_METAL.log`  
+`$metal LDL_METAL.conf > LDL_METAL.log`  
 Note: If you would like to time your analysis you can use the time program.  
-`/usr/bin/time -o test_time -v metal LDL_METAL.conf`
+`/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
 ****Did you use genomic control? In what situations is it useful to use genomic control****  
@@ -188,5 +188,3 @@ The file should exist in whatever the default directory your R is writing into. 
 
 ****What is the lambda value for the smallest minor allele frequency (MAF) bin?****  
 `cat *_lambda.txt`. 
-
-
