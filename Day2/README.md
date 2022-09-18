@@ -14,8 +14,10 @@ Running a GWAS will often be the second step after 1) quality control (QC) of ge
 * [Yik Y. Teoa, Common statistical issues in genome‐wide association studies: a review on power, data quality control, genotype calling and population structure, Current Opinionin Lipidology 2008, 19:133–143](https://www.biorxiv.org/content/10.1101/583278v1)
 * [Anderson et.al. Data quality control in genetic case‐control association studies. Nat Protoc. 2010 Sep; 5 (9): 1564‐73.](https://pubmed.ncbi.nlm.nih.gov/21085122/)
 
-**PLINK:** [https://www.cog-genomics.org/plink/](https://www.cog-genomics.org/plink/)
+We will use Plink to run a GWAS in this practical:
 
+We have already downloaded it on your PC today but you can also find it here if you need it one day
+**PLINK:** [https://www.cog-genomics.org/plink/](https://www.cog-genomics.org/plink/)
 PLINK is an open source and free toolset developed for the analysis of whole genome data.
 It run a range of basic large scale analysis focused on genotype/phenotype data.
 PLINK is used for a wide range of task, especially for quality controls, calculating relatedness between individuals and basic association analysis. 
@@ -47,18 +49,24 @@ You can find useful information regarding these files here:
   [https://www.cog‐genomics.org/plink/1.9/formats#bed](https://www.cog‐genomics.org/plink/1.9/formats#bed)
    
 *You can have a look at them in the terminal:*
-*Open Terminal (Mac) or Ubuntu (Windows) or command line of choice*
+*Open Ubuntu on your PC*
+NB: This exercise will use Ubuntu as we are on Windows computers but will run with any terminal handling Linux commands.
 
 We will first introduce some basic linux commands that will be nice to know (cd, less, head, tail, more) to navigate in a terminal.
     
 ###### In terminal:
-
 You need to first make the terminal know where your files are/what directory to work from
 and you can copy this and paste it into your terminal.  
-For example:
-cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day2/
 
+For example:
+```
+cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day2/
+```
+We also need to tell the terminal where plink is:
+
+```
 plink=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/PLINK/plink.exe
+```
 
 Then have a look at the top of the files:
 
