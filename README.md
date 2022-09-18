@@ -24,7 +24,9 @@ Super user
 1. [R](https://www.r-project.org/) (**version 4.0.0+**)
 2. R Studio: https://www.rstudio.com/products/rstudio/download/
 3. For Windows users: Ubuntu from Microsoft Store on your computer: https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ar-ps&gl=ps   
-[Trouble shooting for Ubuntu](https://github.com/hunt-genes/PPU-GenEpi/blob/main/Troubleshooting_Ubuntu_install_Windows.docx)    
+         
+[Trouble shooting for Ubuntu](https://github.com/hunt-genes/PPU-GenEpi/blob/main/Troubleshooting_Ubuntu_install_Windows.docx)       
+
 
 User    
 
