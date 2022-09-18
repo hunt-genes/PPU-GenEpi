@@ -39,7 +39,7 @@ Add data to Day5/
 Install R dependincies:     
 https://github.com/hunt-genes/PPU-GenEpi/blob/main/installs.R     
 
-Link to all:
+Link to all:    
 https://ntnu.box.com/s/65t7h8or43ek4wykn0vc7zr73726e9n2
 
 Useful folders:     
