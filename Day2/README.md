@@ -58,6 +58,8 @@ and you can copy this and paste it into your terminal.
 For example:
 cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day2/
 
+plink=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/PLINK/plink.exe
+
 Then have a look at the top of the files:
 
 ```
@@ -98,7 +100,7 @@ The following command performs **association analysis in PLINK** using logistic 
   
 ###### In terminal:
 ```
-./plink --bfile day2 --allow-no-sex --logistic beta --ci 0.95 --out output/results
+$plink --bfile day2 --allow-no-sex --logistic beta --ci 0.95 --out output/results
 ```
 
 This command uses the files with the name "day2*" as input, runs the analysis, and stores the output files in "output":
@@ -203,7 +205,7 @@ sample statistic for missing rate:
   
 ###### In terminal:
 ```
-./plink --bfile day2 --missing --allow-no-sex --out output/mis 
+$plink --bfile day2 --missing --allow-no-sex --out output/mis 
 ```
 The sample statistics are written to
 
@@ -216,7 +218,7 @@ The *fourth* column [N_MISS], in the file mis.imiss gives the number of missing 
   
 ###### In terminal:
   ```  
-./plink --bfile day2 --het --allow-no-sex --out output/het
+$plink --bfile day2 --het --allow-no-sex --out output/het
 ```
 
 The sample statistics are written to:
@@ -333,7 +335,7 @@ test at p-value =0.00000001:*
   
 ###### In Terminal:
  ```
-./plink --bfile day2 --maf 0.35 --geno 0.05 --hwe 0.00000001 --allow-no-sex --make-bed --out output/frequent
+$plink --bfile day2 --maf 0.35 --geno 0.05 --hwe 0.00000001 --allow-no-sex --make-bed --out output/frequent
 ```
 
 
@@ -349,7 +351,7 @@ Reduce the subset of frequent SNPs by pruning so that no pair of SNPs
   
 ###### In Terminal:
 ```
-./plink --bfile output/frequent --indep-pairwise 50 5 0.2 --allow-no-sex --out output/prunedsnplist
+$plink --bfile output/frequent --indep-pairwise 50 5 0.2 --allow-no-sex --out output/prunedsnplist
 
 head output/prunedsnplist.prune.in | head
 ```
@@ -359,7 +361,7 @@ of frequent SNPs:
   
 ##### In Terminal:
 ```
-./plink --bfile output/frequent --extract output/prunedsnplist.prune.in --genome --allow-no-sex --out  output/pruned
+$plink --bfile output/frequent --extract output/prunedsnplist.prune.in --genome --allow-no-sex --out  output/pruned
 
 head output/pruned.genome |head
 wc -l output/pruned.genome
@@ -467,7 +469,7 @@ dataset:
   
 ###### In Terminal:
 ```
-./plink --bfile day2 --remove output/fail_qc.txt --allow-no-sex --make-bed --out output/qc.ind
+$plink --bfile day2 --remove output/fail_qc.txt --allow-no-sex --make-bed --out output/qc.ind
 ```
 
 **Note:** make sure to look at the screen output when these commands run.
@@ -495,7 +497,7 @@ The following PLINK command computes the missing data rate:
   
 ###### In Terminal:
 ```
-./plink --bfile output/qc.ind --missing --allow-no-sex --out output/qc.ind.mis
+$plink --bfile output/qc.ind --missing --allow-no-sex --out output/qc.ind.mis
 
 head output/qc.ind.mis.lmiss
 ```
@@ -543,7 +545,7 @@ PLINK and visualizing in R:
   
 ###### In terminal:
 ```
-./plink --bfile output/qc.ind --freq  --allow-no-sex --out output/qc.ind.freq
+$plink --bfile output/qc.ind --freq  --allow-no-sex --out output/qc.ind.freq
 ```
 
 ###### In R session:
@@ -571,7 +573,7 @@ results into a file **qc.ind.call.rate.missing**.
 
 ###### In Terminal:
 ```
-./plink --bfile output/qc.ind --test-missing --allow-no-sex  --out output/qc.ind.call.rate
+$plink --bfile output/qc.ind --test-missing --allow-no-sex  --out output/qc.ind.call.rate
 
 head output/qc.ind.call.rate.missing |head
 wc -l output/qc.ind.call.rate.missing
@@ -603,7 +605,7 @@ at p-value <0.000001 (in controls):
   
 ###### In Terminal:
 ```
-./plink --bfile output/qc.ind  --exclude output/fail_diffmiss_qc.txt  --maf 0.01 --hwe 1e-6  --geno 0.04  --make-bed --allow-no-sex  --out output/practical2.qc
+$plink --bfile output/qc.ind  --exclude output/fail_diffmiss_qc.txt  --maf 0.01 --hwe 1e-6  --geno 0.04  --make-bed --allow-no-sex  --out output/practical2.qc
 ```
 
 
@@ -617,7 +619,7 @@ to see if it has made any difference to the results using PLINK:
   
 ###### In Terminal:
 ```
-./plink --bfile output/practical2.qc --allow-no-sex --logistic beta --ci 0.95 --out  output/day2.qc.log
+$plink --bfile output/practical2.qc --allow-no-sex --logistic beta --ci 0.95 --out  output/day2.qc.log
 ```
 
 ###### In R session:
