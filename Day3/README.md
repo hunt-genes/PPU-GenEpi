@@ -243,7 +243,6 @@ We will remove individuals with F coefficients that are more than 3 standard dev
     s <- sd(dat$F) # Calculate the SD
     valid <- subset(dat, F <= m+3*s & F >= m-3*s) # Get any samples with F coefficient within 3 SD of the population mean
     write.table(valid[,c(1,2)], "EUR.valid.sample", quote=F, row.names=F) # print FID and IID for valid samples
-    q() # exit R
 ```
 
 ??? note "How many samples were excluded due to high heterozygosity rate?"
@@ -289,7 +288,6 @@ This will generate a file called **EUR.QC.sexcheck** containing the F-statistics
     dat <- read.table("EUR.QC.sexcheck", header=T)
     valid <- subset(dat, STATUS=="OK" & FID %in% valid$FID)
     write.table(valid[,c("FID", "IID")], "EUR.QC.valid", row.names=F, col.names=F, sep="\t", quote=F) 
-    q() # exit R
 ```
 
 ??? note "How many samples were excluded due mismatched Sex information?"
@@ -366,8 +364,8 @@ We can obtain the transformed summary statistics with `R`:
     dat <- read.table(gzfile("Height.QC.gz"), header=T)
     dat$BETA <- log(dat$OR)
     write.table(dat, "Height.QC.Transformed", quote=F, row.names=F)
-    q() # exit R
-    ````
+````
+
 ## Clumping
 Linkage disequilibrium, which corresponds to the correlation between the genotypes of genetic variants across the genome, makes identifying the contribution from causal independent genetic variants extremely challenging. 
 One way of approximately capturing the right level of causal signal is to perform clumping, which removes SNPs in ways that only weakly correlated SNPs are retained but preferentially retaining the SNPs most associated with the phenotype under study. 
@@ -613,5 +611,4 @@ The PRS results corresponding to a range of P-value thresholds obtained by appli
             line=2, cex=1.5, font=2, adj=0)
     # write the plot to file
     dev.off()
-    #q() # exit R
-    ```
+```
