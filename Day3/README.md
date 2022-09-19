@@ -107,7 +107,7 @@ The above command does the following:
 Compresses and writes the results to **Height.nodup.gz**
 
 ??? note "How many duplicated SNPs are there?"
-
+Hint: you learned some baseline functions to check the numbers of rows and columns yesterday
 
 ## \# Ambiguous SNPs
 If the base and target data were generated using different genotyping chips and the chromosome strand (+/-) that was used for either is unknown, then it is not possible to pair-up the alleles of ambiguous SNPs (i.e. those with complementary alleles, either C/G or A/T SNPs) across the data sets, because it will be unknown whether the base and target data are referring to the same allele or not. While allele frequencies could be used to infer which alleles are on the same strand, the accuracy of this could be low for SNPs with MAF close to 50% or when the base and target data are from different populations. Therefore, we recommend removing all ambiguous SNPs to avoid introducing this potential source of systematic error.
@@ -234,7 +234,7 @@ $plink \
 ```
 
 This will generate the **EUR.QC.het** file, which contains F coefficient estimates for assessing heterozygosity.
-We will remove individuals with F coefficients that are more than 3 standard deviation (SD) units from the mean, which can be performed using the following `R` command (assuming that you have R downloaded, then you can open an `R` session by typing `R` in your terminal):
+We will remove individuals with F coefficients that are more than 3 standard deviation (SD) units from the mean, which can be performed using the following `R` command (open an `R` session using RStudio):
 
 ```R
     dat <- read.table("EUR.QC.het", header=T) # Read in the EUR.het file, specify it has header
