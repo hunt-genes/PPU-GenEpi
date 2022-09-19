@@ -80,7 +80,13 @@ Then have a look at the top of the files:
 
 ```
 less day2.bim | head
+```
+To exit `less` press `ESC`
+```
 less day2.fam | head
+```
+
+```
 less day2.bed | head
 ```
 
