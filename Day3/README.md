@@ -19,12 +19,12 @@ Note:
 Remember to set the file paths and path to Plink again:
 ```bash
 cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day3/
-```bash
+```
 
 We also need to tell the terminal where plink is:
 ```bash
 plink=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/PLINK/plink.exe
-```bash
+```
 
 Open terminal (meaning Ubuntu in Windows):     
 ```bash
