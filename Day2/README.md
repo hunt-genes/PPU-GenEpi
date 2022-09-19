@@ -179,6 +179,18 @@ The p-values (on –log10 scale) can be plotted across the chromosome:
 **Note:** 
   * You need to have the packages "ggplot2" and "scales" installed
 
+To install the R packages run this script:
+```
+install.packages(c('ggplot2', 'scales', 'AER', 'devtools', 'dlyr', 
+  'data.table', 'stringr', 'optparse'))
+```
+```
+library(devtools)
+```
+```
+install_github("MRCIEU/TwoSampleMR")
+```
+
 * If you are not using Rstudio, you can view the plots in Finder or Outlook.
   
 ###### In R session:
