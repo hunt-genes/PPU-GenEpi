@@ -735,7 +735,10 @@ identified by typing in R:
 assoc.qc[-log10(assoc.qc$P)>4,]
 ```
 
-Please fill the following form during the exercise today: 
+
+###### Final note:
+
+Remember to fill the following form during the exercise today: 
   [https://nettskjema.no/a/284234](https://nettskjema.no/a/284234)
 
 Thank you!
