@@ -14,7 +14,7 @@ Please refer to the paper as you work through the practical.
 The first step in Polygenic Risk Score (PRS) analyses is to generate or obtain the base data (GWAS summary statistics). Ideally these will correspond to the most powerful GWAS results available on the phenotype under study. In this example, we will use GWAS summary statistics from simulated height data (these will be provided in the folder with this document).
 
 ## Reading the base data file
-**Height.gwas.txt.gz** is compressed. To read its content, you can type:
+**Height.gwas.txt.gz** is compressed. To read its content, you can type in terminal/Ubuntu:
 
 Note:
 Remember to set the file paths and path to Plink again:
@@ -69,6 +69,7 @@ Therefore, SNPs with low MAF and INFO are typically removed before performing do
 We recommend removing SNPs with MAF < 1% and INFO < 0.8 (with very large base sample sizes these thresholds could be reduced if sensitivity checks indicate reliable results).
 These SNP filters can be achieved using the following code:
 
+###### In terminal:
 ```bash 
 gunzip -c Height.gwas.txt.gz |\
 awk 'NR==1 || ($11 > 0.01) && ($10 > 0.8) {print}' |\
@@ -94,6 +95,7 @@ Since we need the target data to know which SNPs have mismatching alleles, we wi
 If an error has occurred in the generation of the base data then there may be duplicated SNPs in the base data file.
 Most PRS software do not allow duplicated SNPs in the base data input and thus they should be removed, using a command such as the one below: 
 
+###### In terminal:
 ```bash
 gunzip -c Height.gz |\
 awk '{seen[$3]++; if(seen[$3]==1){ print}}' |\
@@ -114,7 +116,7 @@ If the base and target data were generated using different genotyping chips and 
 
 Ambiguous SNPs can be removed in the base data and then there will be no such SNPs in the subsequent analyses, since analyses are performed only on SNPs that overlap between the base and target data.
 
-Nonambiguous SNPs can be retained using the following:
+Nonambiguous SNPs can be retained using the following in the terminal:
 ```bash
 gunzip -c Height.nodup.gz |\
 awk '!( ($4=="A" && $5=="T") || \
@@ -137,6 +139,7 @@ Target data consist of individual-level genotype-phenotype data, usually generat
 
 Unzip the data as follow: (Some might have to run apt install unzip before this command, but you will know if you see an error message)
 
+###### In terminal:
 ```bash
 apt install unzip    
 
@@ -160,7 +163,7 @@ individuals with low genotyping rate
 
 The following `plink` command applies some of these QC metrics to the target data:
 
-
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -199,6 +202,7 @@ Very high or low heterozygosity rates in individuals could be due to DNA contami
 
 First, we perform pruning to remove highly correlated SNPs:
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -224,6 +228,7 @@ This will generate two files 1) **EUR.QC.prune.in** and 2) **EUR.QC.prune.out**.
 
 Heterozygosity rates can then be computed using `plink`:
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -236,12 +241,13 @@ $plink \
 This will generate the **EUR.QC.het** file, which contains F coefficient estimates for assessing heterozygosity.
 We will remove individuals with F coefficients that are more than 3 standard deviation (SD) units from the mean, which can be performed using the following `R` command (open an `R` session using RStudio):
 
-```R
-    dat <- read.table("EUR.QC.het", header=T) # Read in the EUR.het file, specify it has header
-    m <- mean(dat$F) # Calculate the mean  
-    s <- sd(dat$F) # Calculate the SD
-    valid <- subset(dat, F <= m+3*s & F >= m-3*s) # Get any samples with F coefficient within 3 SD of the population mean
-    write.table(valid[,c(1,2)], "EUR.valid.sample", quote=F, row.names=F) # print FID and IID for valid samples
+###### In R session:
+```
+dat <- read.table("EUR.QC.het", header=T) # Read in the EUR.het file, specify it has header
+m <- mean(dat$F) # Calculate the mean  
+s <- sd(dat$F) # Calculate the SD
+valid <- subset(dat, F <= m+3*s & F >= m-3*s) # Get any samples with F coefficient within 3 SD of the population mean
+write.table(valid[,c(1,2)], "EUR.valid.sample", quote=F, row.names=F) # print FID and IID for valid samples
 ```
 
 ??? note "How many samples were excluded due to high heterozygosity rate?"
@@ -252,15 +258,13 @@ These were removed during the base data QC.
 ## \# Mismatching SNPs
 SNPs that have mismatching alleles reported in the base and target data may be resolvable by strand-flipping the alleles to their complementary alleles in e.g. the target data, such as for a SNP with A/C in the base data and G/T in the target. Most PRS software will perform strand-flipping automatically. Check your software does this before calculating your PRS; if it does not, there is some R code in the online tutorial for performing strand-flipping (https://choishingwan.github.io/PRS-Tutorial/target/).
 
-```bash
-Rscript Ambiguous_SNPs.R
-```
+###### In R session:
 
-Note: If using Ubuntu on Windows open R and run the following code:
-
+Run everything at once:
 ```R
 source('Ambiguous_SNPs.R')
 ```
+.... or go through the script line by line.
 
 ## \# Duplicate SNPs
 Make sure to remove any duplicate SNPs in your target data (these target data were simulated and so include no duplicated SNPs).
@@ -270,6 +274,8 @@ Sometimes sample mislabelling can occur, which may lead to invalid results. One 
 
 Before performing a sex check, pruning should be performed (see [here](target.md#35-standard-gwas-qc)).
 A sex check can then easily be conducted using `plink`
+
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -281,6 +287,7 @@ $plink \
 
 This will generate a file called **EUR.QC.sexcheck** containing the F-statistics for each individual. Individuals are typically called as being biologically male if the F-statistic is > 0.8 and biologically female if F < 0.2.
 
+###### R session:
 ```R
     # Read in file
     valid <- read.table("EUR.valid.sample", header=T)
@@ -300,6 +307,7 @@ Closely related individuals in the target data may lead to overfitted results, l
 Before calculating the relatedness, pruning should be performed (see [here](target.md#35-standard-gwas-qc)).
 Individuals that have a first or second degree relative in the sample ($\hat{\pi} > 0.125$) can be removed with the following command:
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -314,6 +322,7 @@ $plink \
 ## Generate final QC'ed target data file
 After performing the full analysis, you can generate a QC'ed data set with the following command:
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR \
@@ -359,6 +368,7 @@ In the previous sections, we have generated the following files:
 When the effect size relates to disease risk and is thus given as an odds ratio (OR), rather than BETA (for continuous traits), then the PRS is computed as a product of ORs. To simplify this calculation, we take the natural logarithm of the OR so that the PRS can be computed using summation instead (which can be back-transformed afterwards). 
 We can obtain the transformed summary statistics with `R`:
 
+###### In R session:
 ```R
     dat <- read.table(gzfile("Height.QC.gz"), header=T)
     dat$BETA <- log(dat$OR)
@@ -368,8 +378,9 @@ We can obtain the transformed summary statistics with `R`:
 ## Clumping
 Linkage disequilibrium, which corresponds to the correlation between the genotypes of genetic variants across the genome, makes identifying the contribution from causal independent genetic variants extremely challenging. 
 One way of approximately capturing the right level of causal signal is to perform clumping, which removes SNPs in ways that only weakly correlated SNPs are retained but preferentially retaining the SNPs most associated with the phenotype under study. 
-Clumping can be performed using the following command in `plink`: 
+Clumping can be performed using the following command for `plink`: 
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR.QC \
@@ -396,6 +407,7 @@ Each of the new parameters corresponds to the following
 This will generate **EUR.clumped**, containing the index SNPs after clumping is performed.
 We can extract the index SNP ID by performing the following command:
 
+###### In terminal:
 ```awk
 awk 'NR!=1{print $3}' EUR.clumped >  EUR.valid.snp
 ```
@@ -416,12 +428,14 @@ We will need three files:
 1. The base data file: **Height.QC.Transformed**
 2. A file containing SNP IDs and their corresponding P-values (`$3` because SNP ID is located in the third column; `$8` because the P-value is located in the eighth column)
 
+###### In terminal:
 ```awk
 awk '{print $3,$8}' Height.QC.Transformed > SNP.pvalue
 ```
 
 3. A file containing the different P-value thresholds for inclusion of SNPs in the PRS. Here calculate PRS corresponding to a few thresholds for illustration purposes:
 
+###### In terminal:
 ```bash
 echo "0.001 0 0.001" > range_list 
 echo "0.05 0 0.05" >> range_list
@@ -442,6 +456,7 @@ The format of the **range_list** file should be as follows:
 
 We can then calculate the PRS with the following `plink` command:
 
+###### In terminal:
 ```bash
 $plink \
     --bfile EUR.QC \
@@ -473,6 +488,7 @@ Population structure is the principal source of confounding in GWAS and is usual
 
 Again, we can calculate the PCs using `plink`: 
 
+###### In terminal:
 ```bash
 # First, we need to perform prunning
 $plink \
@@ -496,7 +512,8 @@ The P-value threshold that provides the "best-fit" PRS under the C+T method is u
 To approximate the "best-fit" PRS, we can perform a regression between PRS calculated at a range of P-value thresholds and then select the PRS that explains the highest phenotypic variance (please see Section 4.6 of our paper on overfitting issues). 
 This can be achieved using `R` as follows:
 
-    ```R 
+###### R session:
+```R 
     p.threshold <- c(0.001,0.05,0.1,0.2,0.3,0.4,0.5)
     # Read in the phenotype file 
     phenotype <- read.table("EUR.height", header=T)
@@ -541,9 +558,9 @@ This can be achieved using `R` as follows:
     # Best result is:
     prs.result[which.max(prs.result$R2),]
     
-    	```    
-Which P-value threshold generates the "best-fit" PRS?"
+```    
 
+Which P-value threshold generates the "best-fit" PRS?"
 
 How much phenotypic variation does the "best-fit" PRS explain?"
 
@@ -551,6 +568,7 @@ How much phenotypic variation does the "best-fit" PRS explain?"
 # 4. Visualising the PRS results
 The PRS results corresponding to a range of P-value thresholds obtained by application of the C+T PRS method (eg. using PLINK or PRSice-2) can be visualised using `R` as follows:
 
+###### In R session:
 ```R
     # We strongly recommend the use of ggplot2. (see code in online tutorial – I’ve included this code here in case some people are unable to install the ggplot2 package).
     # Specify that we want to generate plot in EUR.height.bar.png
@@ -610,4 +628,5 @@ The PRS results corresponding to a range of P-value thresholds obtained by appli
             line=2, cex=1.5, font=2, adj=0)
     # write the plot to file
     dev.off()
+
 ```
