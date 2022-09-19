@@ -1,5 +1,5 @@
 
-[Precourse materials]("PPU Gen Epi - pre-course preparations 2022.pdf")
+[Precourse materials](PPU Gen Epi - pre-course preparations 2022.pdf)
 
 [Course timetable](https://github.com/hunt-genes/PPU-GenEpi/blob/main/PPU_timetable_v4.docx)
 
