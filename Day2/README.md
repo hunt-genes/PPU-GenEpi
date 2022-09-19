@@ -1,5 +1,11 @@
 # DAY 2 - Quality Control and Testing Association for Genome-Wide Association Studies
 
+Please fill the following form during the exercise today: 
+  [https://nettskjema.no/a/284234](https://nettskjema.no/a/284234)
+
+Thank you!
+
+
 ### FOCUS and LEARNING GOALS
 > The aim for this session is to get familiar with the different data formats and 
 > the quality control needed in preparation for running genetic analysis.
@@ -59,9 +65,11 @@ You need to first make the terminal know where your files are/what directory to 
 and you can copy this and paste it into your terminal.  
 
 For example:
+
 ```
 cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day2/
 ```
+
 We also need to tell the terminal where plink is:
 
 ```
@@ -726,3 +734,8 @@ identified by typing in R:
 ```
 assoc.qc[-log10(assoc.qc$P)>4,]
 ```
+
+Please fill the following form during the exercise today: 
+  [https://nettskjema.no/a/284234](https://nettskjema.no/a/284234)
+
+Thank you!
