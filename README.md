@@ -3,7 +3,7 @@
 
 [Course timetable](https://github.com/hunt-genes/PPU-GenEpi/blob/main/PPU_timetable_v4.docx)
 
-[Resources](Resources.md)
+[Resources](resources.md)
 
 # PPU Genetic Epidemology Course - Practicals
 
