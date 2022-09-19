@@ -7,6 +7,7 @@ The practical is separated into four main sections, corresponding to the guide i
 2.	QC of the target data
 3.	Calculating and analysing the PRS
 4.	Visualising the PRS results
+
 Please refer to the paper as you work through the practical. 
 
 # 1. QC of Base Data
