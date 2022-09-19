@@ -162,8 +162,6 @@ The following `plink` command applies some of these QC metrics to the target dat
 
 
 ```bash
-plink=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/PLINK/plink.exe
-
 $plink \
     --bfile EUR \
     --maf 0.01 \
