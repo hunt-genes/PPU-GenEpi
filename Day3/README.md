@@ -15,6 +15,13 @@ The first step in Polygenic Risk Score (PRS) analyses is to generate or obtain t
 ## Reading the base data file
 **Height.gwas.txt.gz** is compressed. To read its content, you can type:
 
+Note:
+Remember to set the file paths and path to Plink again:
+cd /mnt/c/Users/User/Desktop/PPU-GenEpi-main/Day3/
+We also need to tell the terminal where plink is:
+
+plink=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/PLINK/plink.exe
+
 Open terminal (meaning Ubuntu in Windows):     
 ```bash
 gunzip -c Height.gwas.txt.gz | head
