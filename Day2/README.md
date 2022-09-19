@@ -644,7 +644,7 @@ $plink --bfile output/practical2.qc --allow-no-sex --logistic beta --ci 0.95 --o
 assoc <- read.table("output/results.assoc.logistic", header=T, as.is=T)
 
 #read in the association test results (after QC)
-assoc.qc <- read.table("/output/day2.qc.log.assoc.logistic", header=T, as.is=T)
+assoc.qc <- read.table("output/day2.qc.log.assoc.logistic", header=T, as.is=T)
 
 
 QC_before_plot <- ggplot(assoc, aes(BP, P)) +
