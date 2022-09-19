@@ -1,3 +1,10 @@
+#Install dependencies
+install.packages(c('ggplot2', 'scales', 'AER', 'devtools', 'dlyr', 
+  'data.table', 'stringr', 'optparse'))
+
+library(devtools)
+install_github("MRCIEU/TwoSampleMR")
+
 # Read in the dataset 
 example <- read.table("data.txt", header=T)
 attach(example)
