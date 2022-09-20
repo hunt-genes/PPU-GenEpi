@@ -52,7 +52,7 @@ Awk is a language you can use on the command line. [User's Guide](https://www.gn
 * `awk 'NR==1 || ($1 > 1) {print}'` Print the first row OR `||` lines with the a first column greater than 1
 * `awk '($1 > 1) && ($2 > 3) {print}'` Print rows with the first column (`$1`) greate than 1 AND `&&` rows with the second column (`$2`) greater than 3
 
-#Command line
+# Command line OS
 * [Unix vs Linux](https://www.geeksforgeeks.org/linux-vs-unix/): Unix is a operating system, Linux is a Unix-like operating system that is free and opensource 
 * Ubuntu is an operating system based on the Debian Linux distribution and is free and open source 
 * [sh vs bash](https://www.geeksforgeeks.org/difference-between-sh-and-bash/): bash is a shell of the Unix operating system, like sh but with more features, sh is a shell of the Unix operating system 
