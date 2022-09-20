@@ -93,7 +93,7 @@ less day2.bed | head
 This will display the the first ten lines in the terminal. If you use ```tail``` instead of ```head```,
 you will the bottom of the file. By using ```more``` instead of ```head``` you can scroll down the file by 
 hitting the space-button. If you wish to get out of the file, you press "q". 
-These are examples of commands that are very useful when writing in a terminal with unix language.
+These are examples of commands that are very useful when writing in a terminal with unix language. Please see the link to resources for coding on the main branch (PPU-GenEpi) of this github site.
 
 
 When/If you try ```less day2.bed | head```, 
@@ -212,9 +212,10 @@ assoc_plot <- ggplot(assoc, aes(BP, P)) +
                                      labels=scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title="-log10 p-values", x ="position", y = "-log10 p-value") +
   theme_bw()
+ggsave("output/assoc_plot.pdf", assoc_plot)
+
 assoc_plot
 
-ggsave("output/assoc_plot.pdf", assoc_plot)
 ```
 
 
@@ -294,10 +295,10 @@ mishet_plot <- ggplot(mishet, aes(mis.rate, het.rate)) +
   geom_point() +
   labs(title="", x ="Proportion of missing genotypes", y = "Heterozygosity rate") +
   theme_bw()
+ggsave("output/mishet.pdf", mishet_plot)
 
 mishet_plot
 
-ggsave("output/mishet.pdf", mishet_plot)
 ```
 **Note:** In this function we assume they are ordered in the same manner. 
 This should always been checked before merging data from two or more 
@@ -324,10 +325,9 @@ mishet_excl_plot <- ggplot(mishet, aes(mis.rate, het.rate)) +
   geom_hline(yintercept=0.23, linetype="dashed") +
   geom_hline(yintercept=0.4, linetype="dashed")
 
-mishet_excl_plot
-
 ggsave("output/mishet_excl_1.pdf", mishet_excl_plot)
 
+mishet_excl_plot
 ```
 
 *How many samples failed each of the filters? 
@@ -448,10 +448,10 @@ ibd.stat_plot <- ggplot(ibd.stat, aes(mean.ibd, se.ibd)) +
   geom_point() +
   labs(title="", x ="Mean IBD", y = "SE IBD") +
   theme_bw()
+ggsave("output/ibd.stat.pdf", ibd.stat_plot)
 
 ibd.stat_plot
 
-ggsave("output/ibd.stat.pdf", ibd.stat_plot)
 ```
 
 
@@ -554,9 +554,10 @@ mis1_genot_plot <- ggplot(lmis, aes(F_MISS)) +
                 labels = scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title="Fraction of missing data", x ="Fraction of missing genotypes", y = "Number of SNPs") +
   theme_bw()
+ggsave("output/qc_ind_lmis_1.pdf", mis1_genot_plot)
 
 mis1_genot_plot
-ggsave("output/qc_ind_lmis_1.pdf", mis1_genot_plot)
+
 ```
 
 Based on this plot you can decide upon thresholds for removing SNPs, 
@@ -571,10 +572,10 @@ mis_genot_plot_2 <- ggplot(lmis, aes(F_MISS)) +
   labs(title="Fraction of missing data", x ="Fraction of missing genotypes", y = "Number of SNPs") +
   theme_bw() +
   geom_vline(xintercept=0.04, linetype="dashed")
+ggsave("output/qc_ind_lmis_2.pdf", mis_genot_plot_2)
 
 mis_genot_plot_2
 
-ggsave("output/qc_ind_lmis_2.pdf", mis_genot_plot_2)
 ```
 
 Next, examine the frequency of the minor alleles by computing them in 
@@ -596,10 +597,10 @@ maf_plot <- ggplot(freq, aes(MAF)) +
   labs(title="Minor allele frequencies", x ="MAF", y = "Number of SNPs") +
   theme_bw() +
   geom_vline(xintercept=0.01, linetype="dashed")
+ggsave("output/maf.pdf", maf_plot)
 
 maf_plot
 
-ggsave("output/maf.pdf", maf_plot)
 ```
 
 #### Different genotype call rates between cases and controls
@@ -673,18 +674,18 @@ QC_before_plot <- ggplot(assoc, aes(BP, P)) +
                                      labels=scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title="-log10 p-values (before QC)", x ="position", y = "-log10 p-value") +
   theme_bw()
-QC_before_plot
+ggsave("output/comparison_beforeQC.pdf", QC_before_plot)
 
 QC_after_plot <- ggplot(assoc.qc, aes(BP, P)) +
   geom_point() +  scale_y_continuous(trans=reverselog_trans(base=10),
                                      labels=scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title="-log10 p-values (after QC)", x ="position", y = "-log10 p-value") +
   theme_bw()
+ggsave("output/comparison_afterQC.pdf", QC_after_plot)
+
+QC_before_plot
 QC_after_plot
 
-# Saving plots
-ggsave("output/comparison_beforeQC.pdf", QC_before_plot)
-ggsave("output/comparison_afterQC.pdf", QC_after_plot)
 ```
 
 It seems as if most of the highly significant results have disappeared 
@@ -716,12 +717,14 @@ qq_plot_beforeQC <- ggplot(qq.stat, aes(p.exp, p.obs)) +
   labs(title="QQ plot (before QC)", x ="expected -log10 p-value", y = "observed -log10 p-value") +
   theme_bw() +
   geom_abline(intercept = 0, slope = 1, color="grey", linetype="dashed")
+ggsave("output/qq_plot_beforeQC.pdf", qq_plot_beforeQC)
 
 qq_plot_beforeQC
 
-#save plot
-ggsave("output/qq_plot_beforeQC.pdf", qq_plot_beforeQC)
+```
 
+
+```
 #observed –log10 p-values (after QC)
 p.obs <- -log10(sort(assoc.qc$P,decreasing=F))
 
@@ -735,11 +738,9 @@ qq_plot_afterQC <- ggplot(qq.stat, aes(p.exp, p.obs)) +
   labs(title="QQ plot (after QC)", x ="expected -log10 p-value", y = "observed -log10 p-value") +
   theme_bw() +
   geom_abline(intercept = 0, slope = 1, color="grey", linetype="dashed")
+ggsave("output/qq_plot_after.pdf", qq_plot_afterQC)
 
 qq_plot_afterQC
-
-#save plot
-ggsave("output/qq_plot_after.pdf", qq_plot_afterQC)
 
 ```
 
