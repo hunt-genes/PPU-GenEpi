@@ -51,20 +51,23 @@ We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) usi
 Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC in `C:\Users\User\Desktop\PPU-GenEpi-main\Day5`
 
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
-`BBJ-LDL-preMeta.txt`  
+`BBJ-LDL-alphaNumID-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE      p.value log10P
 
 * The original summary statistics of joint analysis of metabochip and GWAS data for LDL cholesterol in N=89,138 from the Global Lipids Genetics Consortium (GLGC) can be found [here](http://csg.sph.umich.edu/willer/public/lipids2013/)  
-`GLGC-LDL-preMeta.txt`  
+`GLGC-LDL-alphaNumID-preMeta.txt`  
 The columns are SNP_hg18        SNP_hg19        rsid    A1      A2      beta    se      N       P-value Freq.A1.1000G.EUR
 
 * The summary statistics of LDL cholesterol from the HUNT study in N=67,429.   
-`HUNT-LDL-preMeta.txt`  
+`HUNT-LDL-alphaNumID-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE  p.value 
 
 ## 2. Check your summary statistics to make sure they're ready for meta-analysis.
 
 ### 2.1 Which genome build is used?
+
+In terminal:
+```cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main```
 
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
 The latest human reference genome GRCh38 was released from the Genome Reference Consortium on 17 December 2013.  
@@ -74,11 +77,12 @@ You can see more [here](https://genome.ucsc.edu/FAQ/FAQreleases.html#release1). 
 ****From the summary statistic headers, can you tell what reference genome versions are used for each study?****  
 
 It looks like BBJ and HUNT have SNP coordinates from hg38, but GLGC has summary statistics from hg18 and hg19. 
-We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below.
+We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-alphaNumID-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below.
 
-Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed` in the following the command:
-`awk ' NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4}' > GLCG.hg19.bed`
-
+Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed` in the following the command in terminal
+```
+awk 'NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-alphaNumID-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4}' > GLCG.hg19.bed
+```
 **Web option:**
 Upload the .bed file you made [here](http://genome.ucsc.edu/cgi-bin/hgLiftOver)
 
@@ -105,8 +109,11 @@ The code to create the file with compatible header is here:
 
 ### 2.2 Check the file formats and headers
 
-What is the header?
-`head -n 1 file`
+****What is the header?****
+In terminal: 
+```
+head -n 1 file
+```
 
 ****Are your SNPIDs across the files formatted in the same way?****
 
@@ -146,17 +153,19 @@ Input files:
   * A column indicating the standard error of this effect size estimate 
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
-A shell wrapper script will be used to create the config file needed to run METAL. `LDL_metal.sh` has been created for you. You can run it with the following commands:    
+A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. You can run it with the following commands:  
+
 ### 3.1. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.
-`bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf`   
+```bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
+#bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
+```
 
-e.g. `bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf`    
-
-### 3.2. Run metal with the config file (this should take less than 20 minutes)    
-`metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal`
-`$metal LDL_METAL.conf > LDL_METAL.log`  
-Note: If you would like to time your analysis you can use the time program.  
-`/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
+### 3.2. Run metal with the config file (this should take less than 20 minutes)  
+We need to tell the terminal where METAL is:
+```metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal```
+Run METAL
+```$metal LDL_METAL.conf > LDL_METAL.log```
+Note: If you would like to time your analysis you can use the time program: `/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
 ****Did you use genomic control? In what situations is it useful to use genomic control****  
@@ -166,9 +175,13 @@ Note: If you would like to time your analysis you can use the time program.
 
 ## 4. View the meta-analysis results
 
-Some informative outptut was printing to stdout as METAL was running. ****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
+Some informative outptut was printing to stdout as METAL was running.  
+****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
+
 There will be a .tbl and .tbl.info file created from the meta-analysis. You can use `less` to view the files.
+
 ****Will we use the same genome wide significance threshold for the meta-analysis as we used for the GWAS? Why or why not?****  
+
 ****How many genome wide significant results are there now?**** HINT: Use code like in #2 but replace `$10` with the column number with the p-value and use the file name for your meta-analysis results.
 
 ## 5. Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
@@ -181,9 +194,14 @@ Execute the following command to subset the results. This will take < 5 minutes.
 
 ## 6. Plot the meta-analysis results
 
-To visually inspect your results for significant findings you can make a QQ-plot like Day 2's practical. ****How does the inflation appear to you?****  
-`Rscript QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120`  
-The file should exist in whatever the default directory your R is writing into. You can find this with `pwd`.  
+To visually inspect your results for significant findings you can make a QQ-plot like Day 4's practical. 
+```
+Rscript QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120
+```
+The file should exist in whatever the default directory your R is writing into. You can find this with `pwd`. 
+
+****How does the inflation appear to you?****  
 
 ****What is the lambda value for the smallest minor allele frequency (MAF) bin?****  
-`cat *_lambda.txt`. 
+```cat *_lambda.txt
+```
