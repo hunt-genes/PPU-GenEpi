@@ -45,11 +45,10 @@ When running a meta analysis there are many issues that need to be addressed.
   * population stratification
 
 ## Instructions  
-#### 0. [Install METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for your operating system. See [Practial Day 1](https://github.com/hunt-genes/SMED8020/tree/main/Day1) for details. 
+#### 1. Set up
+We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for you. 
 
-#### 1. Organizing summary statistics  
-
-Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, the data can be downloaded from [here](https://ntnu.box.com/s/rvytm8ymd8iple8negy8ix8x5vp7qs9a). You will need about 1.7 GB.
+Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC in `C:\Users\User\Desktop\PPU-GenEpi-main\Day5`
 
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
 `BBJ-LDL-preMeta.txt`  
@@ -65,7 +64,7 @@ The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allel
 
 #### 2. Check your summary statistics to make sure they're ready for meta-analysis.
 
-2.1 Which genome build is used?
+## 2.1 Which genome build is used?
 
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
 The latest human reference genome GRCh38 was released from the Genome Reference Consortium on 17 December 2013.  
@@ -77,7 +76,7 @@ You can see more [here](https://genome.ucsc.edu/FAQ/FAQreleases.html#release1). 
 It looks like BBJ and HUNT have SNP coordinates from hg38, but GLGC has summary statistics from hg18 and hg19. 
 We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below.
 
-Create a .bed file file from GLGC-LDL-preMeta.txt using linux tools `awk` and `sed` in the following the command:
+Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed` in the following the command:
 `awk ' NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4}' > GLCG.hg19.bed`
 
 **Web option:**
@@ -104,14 +103,14 @@ Look in GLGC.hg38.unmapped. ****Were there some markers that did not get convert
 The code to create the file with compatible header is here:
 `join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt`
 
-2.2 Check the file formats and headers
+## 2.2 Check the file formats and headers
 
 What is the header?
 `head -n 1 file`
 
 ****Are your SNPIDs across the files formatted in the same way?****
 
-2.3 How many variants will we be meta-analyzing?
+## 2.3 How many variants will we be meta-analyzing?
 ****How many variants are in each of the files?****  
 ```
 wc -l BBJ-LDL-preMeta.txt
@@ -148,12 +147,12 @@ Input files:
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
 A shell wrapper script will be used to create the config file needed to run METAL. `LDL_metal.sh` has been created for you. You can run it with the following commands:    
-3.1. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.
+## 3.1. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.
 `bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf`   
 
 e.g. `bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf`    
 
-3.2. Run metal with the config file (this should take less than 20 minutes)    
+## 3.2. Run metal with the config file (this should take less than 20 minutes)    
 `metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal`
 `$metal LDL_METAL.conf > LDL_METAL.log`  
 Note: If you would like to time your analysis you can use the time program.  
