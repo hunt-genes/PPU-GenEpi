@@ -248,8 +248,9 @@ $plink \
 This will generate the **EUR.QC.het** file, which contains F coefficient estimates for assessing heterozygosity.
 We will remove individuals with F coefficients that are more than 3 standard deviation (SD) units from the mean, which can be performed using the following `R` command (open an `R` session using RStudio):
 
-###### In R session:
+###### In RStudio session:
 ```
+setwd("C://Users/User/Desktop/PPU-GenEpi-main/Day3/")
 dat <- read.table("EUR.QC.het", header=T) # Read in the EUR.het file, specify it has header
 m <- mean(dat$F) # Calculate the mean  
 s <- sd(dat$F) # Calculate the SD
@@ -265,7 +266,7 @@ These were removed during the base data QC.
 ## \# Mismatching SNPs
 SNPs that have mismatching alleles reported in the base and target data may be resolvable by strand-flipping the alleles to their complementary alleles in e.g. the target data, such as for a SNP with A/C in the base data and G/T in the target. Most PRS software will perform strand-flipping automatically. Check your software does this before calculating your PRS; if it does not, there is some R code in the online tutorial for performing strand-flipping (https://choishingwan.github.io/PRS-Tutorial/target/).
 
-###### In R session:
+###### In RStudio session:
 
 Run everything at once:
 ```R
