@@ -295,7 +295,7 @@ $plink \
 
 This will generate a file called **EUR.QC.sexcheck** containing the F-statistics for each individual. Individuals are typically called as being biologically male if the F-statistic is > 0.8 and biologically female if F < 0.2.
 
-###### R session:
+###### RStudio session:
 ```R
     # Read in file
     valid <- read.table("EUR.valid.sample", header=T)
@@ -376,7 +376,7 @@ In the previous sections, we have generated the following files:
 When the effect size relates to disease risk and is thus given as an odds ratio (OR), rather than BETA (for continuous traits), then the PRS is computed as a product of ORs. To simplify this calculation, we take the natural logarithm of the OR so that the PRS can be computed using summation instead (which can be back-transformed afterwards). 
 We can obtain the transformed summary statistics with `R`:
 
-###### In R session:
+###### In RStudio session:
 ```R
     dat <- read.table(gzfile("Height.QC.gz"), header=T)
     dat$BETA <- log(dat$OR)
@@ -520,7 +520,7 @@ The P-value threshold that provides the "best-fit" PRS under the C+T method is u
 To approximate the "best-fit" PRS, we can perform a regression between PRS calculated at a range of P-value thresholds and then select the PRS that explains the highest phenotypic variance (please see Section 4.6 of our paper on overfitting issues). 
 This can be achieved using `R` as follows:
 
-###### R session:
+###### RStudio session:
 ```R 
     p.threshold <- c(0.001,0.05,0.1,0.2,0.3,0.4,0.5)
     # Read in the phenotype file 
@@ -576,7 +576,7 @@ This can be achieved using `R` as follows:
 # 4. Visualising the PRS results
 The PRS results corresponding to a range of P-value thresholds obtained by application of the C+T PRS method (eg. using PLINK or PRSice-2) can be visualised using `R` as follows:
 
-###### In R session:
+###### In RStudio session:
 ```R
     # We strongly recommend the use of ggplot2. (see code in online tutorial – I’ve included this code here in case some people are unable to install the ggplot2 package).
     # Specify that we want to generate plot in EUR.height.bar.png
