@@ -40,6 +40,8 @@ List of resources to share for learning
 *  `cat <file>`: prints the contents of files and can be use to concatenate multiple files together
 *  `gzip`: Zip a file with gzip compression format
 *  `gunzip -c`: Write to std out and keep original files when you decompress a .gz file
+*  `unzip`: Decompress  a .zip file
+*  `apt install <package>`: Install a package 
 *  `<command> | <command>`: The pipe signal passes the output from command 1 into command 2
 * Control-c : Sends interrupt signal, can be used to get to a new line
 * Contorl-k: Delete everything on the line
@@ -51,6 +53,7 @@ Awk is a language you can use on the command line. [User's Guide](https://www.gn
 * `awk 'NR==1 {print}'` Print the first row (NR==1)
 * `awk 'NR==1 || ($1 > 1) {print}'` Print the first row OR `||` lines with the a first column greater than 1
 * `awk '($1 > 1) && ($2 > 3) {print}'` Print rows with the first column (`$1`) greate than 1 AND `&&` rows with the second column (`$2`) greater than 3
+* `awk !($1 > 1) {print}'` Print rows with the first column NOT (`!`) greater than 1
 
 # Command line OS
 * [Unix vs Linux](https://www.geeksforgeeks.org/linux-vs-unix/): Unix is a operating system, Linux is a Unix-like operating system that is free and opensource 
