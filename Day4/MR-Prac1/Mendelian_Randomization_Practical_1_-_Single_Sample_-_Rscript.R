@@ -5,7 +5,8 @@ install.packages(c('ggplot2', 'scales', 'AER', 'devtools', 'dlyr',
 library(devtools)
 install_github("MRCIEU/TwoSampleMR")
 
-# Read in the dataset 
+# Set the working directory and read in the dataset 
+setwd("C://Users/User/Desktop/PPU-GenEpi-main/Day4/")
 example <- read.table("data.txt", header=T)
 attach(example)
 
