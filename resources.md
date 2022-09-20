@@ -33,7 +33,7 @@ List of resources to share for learning
 * `rm file`: Delete file
 *  `wc -l`: Number of lines in a file
 *  `zless <file.gz> | wc -l`: Count lines in a gzipped file, can also use zcat and possibly less (if computer knows to use less with zipped files)
-*  `less <file>`: Display the file, to exit press q, to move down, use space bar
+*  `less <file>`: Display the file; to exit press q, to move down, use space bar
 *  `head <file>`: Display the first 10 line of the file to stdout
 *  `mv <file1> <file2>`: Move or rename a file
 *  `cp <file1> <file2>`: Copy a file to another location
@@ -52,6 +52,7 @@ List of resources to share for learning
 * `*`: wild card; you can use like `ls *.gz` to list anything with the `.gz`. suffix 
 * `>`: write to a file; you can use like `echo "my text" > my_file` 
 * `>>`: append to a file; you an use like `echo "my text" > my_file` 
+* If you hit the arrow key upwards you can access previous commands
 
 # Awk
 Awk is a language you can use on the command line. [User's Guide](https://www.gnu.org/software/gawk/manual/gawk.html)
