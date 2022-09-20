@@ -48,6 +48,9 @@ List of resources to share for learning
 
 # Awk
 Awk is a language you can use on the command line. [User's Guide](https://www.gnu.org/software/gawk/manual/gawk.html)
+* `awk 'NR==1 {print}'` Print the first row (NR==1)
+* `awk 'NR==1 || ($1 > 1) {print}'` Print the first row OR `||` lines with the a first column greater than 1
+* `awk '($1 > 1) && ($2 > 3) {print}'` Print rows with the first column (`$1`) greate than 1 AND `&&` rows with the second column (`$2`) greater than 3
 
 #Command line
 * [Unix vs Linux](https://www.geeksforgeeks.org/linux-vs-unix/): Unix is a operating system, Linux is a Unix-like operating system that is free and opensource 
