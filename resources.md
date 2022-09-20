@@ -32,6 +32,7 @@ List of resources to share for learning
 * `rm -rf <directory>`: Delete full directory
 * `rm file`: Delete file
 *  `wc -l`: Number of lines in a file
+*  `zless <file.gz> | wc -l`: Count lines in a gzipped file, can also use zcat and possibly less (if computer knows to use less with zipped files)
 *  `less <file>`: Display the file, to exit press q, to move down, use space bar
 *  `head <file>`: Display the first 10 line of the file to stdout
 *  `mv <file1> <file2>`: Move or rename a file
