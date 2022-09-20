@@ -10,6 +10,9 @@ library(TwoSampleMR)
 library(plyr)
 library(ggplot2)
 
+# Set the working directory
+setwd("C://Users/User/Desktop/PPU-GenEpi-main/Day4/")
+
 # Load BMI (exposure) data
 bmi_exp_data <- read_exposure_data(filename="BMIestimates-BMI_SNPs.txt", sep="\t", snp_col="SNP", beta_col="b", se_col="se", 
 	pval_col="p", eaf_col="Freq1.Hapmap", effect_allele_col="A1", other_allele_col="A2", samplesize_col="N")
