@@ -67,7 +67,8 @@ The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allel
 ### 2.1 Which genome build is used?
 
 In terminal:
-```cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main```
+```cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main
+```
 
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
 The latest human reference genome GRCh38 was released from the Genome Reference Consortium on 17 December 2013.  
@@ -84,13 +85,14 @@ Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `s
 awk 'NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-alphaNumID-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4}' > GLCG.hg19.bed
 ```
 **Web option:**
-Upload the .bed file you made [here](http://genome.ucsc.edu/cgi-bin/hgLiftOver)
+Upload the .bed file you made [here](http://genome.ucsc.edu/cgi-bin/hgLiftOver). 
+Go to **2.2**  
 
-**Command line option:**
-[Download liftOver](https://hgdownload.soe.ucsc.edu/admin/exe/)
-You can use `wget` like so: `wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/liftOver`
-Turn on the executable bit `chmod +x ./filePath/utility_name`
-Now `./filePath/utility_name` is executable.
+**Command line option (ONLY FOR YOUR REFERENCE):**
+[Download liftOver](https://hgdownload.soe.ucsc.edu/admin/exe/). 
+You can use `wget` like so: `wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/liftOver`  
+Turn on the executable bit `chmod +x ./filePath/utility_name`. 
+Now `./filePath/utility_name` is executable.  
 
 [Download the map.chain](https://hgdownload.soe.ucsc.edu/goldenPath/hg19/liftOver/) for hg19 to hg38  
 
@@ -104,18 +106,23 @@ Execute this command:
 
 Look in GLGC.hg38.unmapped. ****Were there some markers that did not get converted from hg19 to hg38? Why do you think that is?****  
 
-The code to create the file with compatible header is here:
-`join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt`
+Create the a hg38 summary statisticsfile with compatible header for METAL:
+```
+join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt
+```
 
 ### 2.2 Check the file formats and headers
 
-****What is the header?****
+****What is the header? What does the `-n 1` parameter do in `head`?****
 In terminal: 
 ```
-head -n 1 file
+head -n 1 BBJ-LDL-alphaNumID-preMeta.txt
+head -n 1 HUNT-LDL-alphaNumID-preMeta.txt
+head -n 1 GLGC-LDL-hg38-alphaNumID-preMeta.txt
 ```
 
 ****Are your SNPIDs across the files formatted in the same way?****
+`head -n 2 BBJ-LDL-alphaNumID-preMeta.txt | cut -f BBJ-LDL-alphaNumID-preMeta.txt`
 
 ### 2.3 How many variants will we be meta-analyzing?
 ****How many variants are in each of the files?****  
@@ -126,7 +133,7 @@ wc -l GLGC-LDL-hg38-preMeta.txt
 ```
 The HUNT summary statistics originally had many variants because imputation was done with the TOPMed imputation panel, which allows for higher resolution imputation due to the large amount of sequencing samples which make up the reference panel. We have subsetted the HUNT file to include only variants seen in GLGC or BBJ. This makes the file a more manageable size, and we only will perform meta-analysis on variants tested in 2 or more studies.
 
-****What imputation panel was used for GLGC?**** HINT: Check the methods of the [paper](https://www.nature.com/articles/ng.2797).
+****What imputation panel was used for GLGC?**** HINT:Check the methods of the [paper](https://www.nature.com/articles/ng.2797).  
 
 ****How many genome wide significant results are in each of the input files?****  
 ```
@@ -153,10 +160,9 @@ Input files:
   * A column indicating the standard error of this effect size estimate 
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
-A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. You can run it with the following commands:  
-
-### 3.1. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.
-```bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
+### 3.1. A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.  
+```
+bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
 #bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
 ```
 
@@ -168,21 +174,21 @@ Run METAL
 Note: If you would like to time your analysis you can use the time program: `/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
-****Did you use genomic control? In what situations is it useful to use genomic control****  
+****Did you use genomic control? In what situations is it useful to use genomic control?****  
 ****What does it mean to set the minimum weight to 10,000?****   
 ****What is the difference between "ANALYZE" and "ANALYZE HETEROGENEITY"?****  
 ****How might you create the config file if your summary statistics files had different header labels?****  
 
 ## 4. View the meta-analysis results
 
-Some informative outptut was printing to stdout as METAL was running.  
+Some informative output was printing to stdout as METAL was running.  
 ****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
 
 There will be a .tbl and .tbl.info file created from the meta-analysis. You can use `less` to view the files.
 
-****Will we use the same genome wide significance threshold for the meta-analysis as we used for the GWAS? Why or why not?****  
+****Do you think we will we use the same genome wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
 
-****How many genome wide significant results are there now?**** HINT: Use code like in #2 but replace `$10` with the column number with the p-value and use the file name for your meta-analysis results.
+****How many genome wide significant results are there now?**** HINT: Use code like in 2.3 but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
 
 ## 5. Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
 
@@ -190,7 +196,9 @@ METAL will perform a meta-analysis even on markers which are only present in one
 The column labelled "direction" shows '?', '+', or '-' to indicate missingness, positive direction of effect, or negative direction of effect, respectively.  
 One can use the `subset_meta_analysis.r` Rscript to exclude markers with more than one '?'.  
 Execute the following command to subset the results. This will take < 5 minutes.  
-`Rscript subset_meta_analysis.r --input LDL_METAL_META1.tbl --output LDL_METAL_MultiStudy.txt`
+```
+Rscript subset_meta_analysis.r --input LDL_METAL_META1.tbl --output LDL_METAL_MultiStudy.txt
+```
 
 ## 6. Plot the meta-analysis results
 
