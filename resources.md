@@ -42,11 +42,15 @@ List of resources to share for learning
 *  `gunzip -c`: Write to std out and keep original files when you decompress a .gz file
 *  `unzip`: Decompress  a .zip file
 *  `apt install <package>`: Install a package 
+*  `echo "your text here"`: displaying lines of text passed 
 *  `<command> | <command>`: The pipe signal passes the output from command 1 into command 2
 * Control-c : Sends interrupt signal, can be used to get to a new line
 * Contorl-k: Delete everything on the line
 * Control-a: Jump to the front of the line
 * Control-e: Jump to the end of the line
+* `*`: wild card; you can use like `ls *.gz` to list anything with the `.gz`. suffix 
+* `>`: write to a file; you can use like `echo "my text" > my_file` 
+* `>>`: append to a file; you an use like `echo "my text" > my_file` 
 
 # Awk
 Awk is a language you can use on the command line. [User's Guide](https://www.gnu.org/software/gawk/manual/gawk.html)
