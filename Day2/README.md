@@ -93,6 +93,9 @@ less day2.bed | head
 This will display the the first ten lines in the terminal. If you use ```tail``` instead of ```head```,
 you will the bottom of the file. By using ```more``` instead of ```head``` you can scroll down the file by 
 hitting the space-button. If you wish to get out of the file, you press "q". 
+These are examples of commands that are very useful when writing in a terminal with unix language.
+
+
 When/If you try ```less day2.bed | head```, 
 you will get the message 
 > "day2.bed" may be a binary file. See it anyway?
