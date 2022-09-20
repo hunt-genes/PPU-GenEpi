@@ -115,7 +115,7 @@ The above command does the following:
 2. Count number of time SNP ID was observed, assuming the third column contian the SNP ID (`seen[$3]++`). If this is the first time seeing this SNP ID, print it. 3. 
 Compresses and writes the results to **Height.nodup.gz**
 
-??? note "How many duplicated SNPs are there?"
+**??? note "How many duplicated SNPs are there?"**
 Hint: you learned some baseline functions to check the numbers of rows and columns yesterday
 
 ## \# Ambiguous SNPs
@@ -133,7 +133,7 @@ awk '!( ($4=="A" && $5=="T") || \
     gzip > Height.QC.gz
 ```
 
-??? note "How many non-ambiguous SNPs were there?"
+**??? note "How many non-ambiguous SNPs were there?"**
 
 ## \# Sample overlap and relatedness
 Since the target data were simulated there are no overlapping samples between the base and target data here (see the relevant section of the paper for discussion of the importance of avoiding sample overlap).
@@ -196,7 +196,7 @@ Each of the parameters corresponds to the following
 | write-snplist | - | Informs `plink` to only generate the QC'ed SNP list to avoid generating the .bed file. |
 | out | EUR.QC | Informs `plink` that all output should have a prefix of `EUR.QC` |
 
-??? note "How many SNPs and samples were filtered?" 
+**??? note "How many SNPs and samples were filtered?"**
 
 !!! note
     Normally, we can generate a new genotype file using the new sample list.
@@ -257,7 +257,7 @@ valid <- subset(dat, F <= m+3*s & F >= m-3*s) # Get any samples with F coefficie
 write.table(valid[,c(1,2)], "EUR.valid.sample", quote=F, row.names=F) # print FID and IID for valid samples
 ```
 
-??? note "How many samples were excluded due to high heterozygosity rate?"
+**??? note "How many samples were excluded due to high heterozygosity rate?"**
 
 ## \# Ambiguous SNPs
 These were removed during the base data QC.
@@ -324,7 +324,7 @@ $plink \
     --out EUR.QC
 ```
 
-??? note "How many related samples were excluded?"
+**??? note "How many related samples were excluded?"**
 
 ## Generate final QC'ed target data file
 After performing the full analysis, you can generate a QC'ed data set with the following command:
@@ -567,9 +567,9 @@ This can be achieved using `R` as follows:
     
 ```    
 
-Which P-value threshold generates the "best-fit" PRS?"
+**??? Which P-value threshold generates the "best-fit" PRS?"**
 
-How much phenotypic variation does the "best-fit" PRS explain?"
+**??? How much phenotypic variation does the "best-fit" PRS explain?"**
 
 
 # 4. Visualising the PRS results
