@@ -303,7 +303,7 @@ This will generate a file called **EUR.QC.sexcheck** containing the F-statistics
     write.table(valid[,c("FID", "IID")], "EUR.QC.valid", row.names=F, col.names=F, sep="\t", quote=F) 
 ```
 
-??? note "How many samples were excluded due mismatched Sex information?"
+**??? note "How many samples were excluded due mismatched Sex information?"**
 
 ## \# Sample overlap
 Since the target data were simulated there are no overlapping samples between the base and target data here (see the relevant section of [the paper](https://www.nature.com/articles/s41596-020-0353-1) for discussion of the importance of avoiding sample overlap). 
