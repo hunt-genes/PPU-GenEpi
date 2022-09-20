@@ -95,6 +95,7 @@ you will the bottom of the file. By using ```more``` instead of ```head``` you c
 hitting the space-button. If you wish to get out of the file, you press "q". 
 These are examples of commands that are very useful when writing in a terminal with unix language. Please see the link to resources for coding on the main branch (PPU-GenEpi) of this github site.
 
+Small tip: If you want to copy the commands here and paste in the terminal, copy as normal and paste in the terminal by right-clicking on the mouse button.
 
 When/If you try ```less day2.bed | head```, 
 you will get the message 
