@@ -1,7 +1,7 @@
 # DAY 3 - Practical Exercise – Polygenic Risk Scores
 
 Please fill the following form during the exercise today: 
-  [https://nettskjema.no/a/284234](https://nettskjema.no/a/284234)
+  [https://nettskjema.no/a/284236](https://nettskjema.no/a/284236)
 
 Thank you!
 
@@ -640,6 +640,6 @@ The PRS results corresponding to a range of P-value thresholds obtained by appli
 ###### Final note:
 
 Remember to fill the following form during the exercise today: 
-  [https://nettskjema.no/a/284235]([https://nettskjema.no/a/284234](https://nettskjema.no/a/284235)
+  [https://nettskjema.no/a/284236](https://nettskjema.no/a/284236)
 
 Thank you!
