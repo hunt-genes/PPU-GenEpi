@@ -48,7 +48,7 @@ When running a meta analysis there are many issues that need to be addressed.
 
 ## Instructions  
 ## 1. Set up
-We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for you. 
+We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for you. An updated version of METAL that should work on machines requiring 64-bit iss available [here](https://github.com/statgen/METAL/blob/master/README.md).
 
 Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC.
 
