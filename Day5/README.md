@@ -23,8 +23,7 @@ The phenotype in today's practical is low density lipoprotein (LDL) cholesterol 
 
 ### Task outline  
 
-0. Install METAL
-1. Gather summary statistics from GWAS for low density lipoprotein (LDL) cholesterol in three separate studies (HUNT, Global Lipids Genetics Consortium, and UK Biobank) and check details for the files.
+1. Install METAL and gather summary statistics from GWAS for low density lipoprotein (LDL) cholesterol in three separate studies (HUNT, Global Lipids Genetics Consortium, and UK Biobank) and check details for the files.
 2. Run a meta-analysis using METAL
 3. Have a coffee or a biobreak or ask questions to the lecturers. Questions for consideration are in ****bold****. 
 4. View meta-analysis results
@@ -45,29 +44,36 @@ When running a meta analysis there are many issues that need to be addressed.
   * population stratification
 
 ## Instructions  
-#### 1. Set up
+## 1. Set up
 We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for you. 
 
-Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC in `C:\Users\User\Desktop\PPU-GenEpi-main\Day5`
+Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC.
+
+In terminal: 
+```
+C:\Users\User\Desktop\PPU-GenEpi-main\Day5
+```
 
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
 `BBJ-LDL-alphaNumID-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE      p.value log10P
 
 * The original summary statistics of joint analysis of metabochip and GWAS data for LDL cholesterol in N=89,138 from the Global Lipids Genetics Consortium (GLGC) can be found [here](http://csg.sph.umich.edu/willer/public/lipids2013/)  
-`GLGC-LDL-alphaNumID-preMeta.txt`  
+`GLGC-LDL-hg38-alphaNumID-preMeta.txt`  
 The columns are SNP_hg18        SNP_hg19        rsid    A1      A2      beta    se      N       P-value Freq.A1.1000G.EUR
 
 * The summary statistics of LDL cholesterol from the HUNT study in N=67,429.   
 `HUNT-LDL-alphaNumID-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE  p.value 
+CHRPOS chr start SNPID POS38 Allele2 CHRPOS37 rsid a2 Allele1 BETA SE N p.value AF_Allele2 CHR max min
 
 ## 2. Check your summary statistics to make sure they're ready for meta-analysis.
 
 ### 2.1 Which genome build is used?
 
 In terminal:
-```cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main
+```
+cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main
 ```
 
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
@@ -173,6 +179,7 @@ Run METAL
 ```$metal LDL_METAL.conf > LDL_METAL.log```
 Note: If you would like to time your analysis you can use the time program: `/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
+While it runs, consider the following questions:
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
 ****Did you use genomic control? In what situations is it useful to use genomic control?****  
 ****What does it mean to set the minimum weight to 10,000?****   
@@ -181,10 +188,14 @@ Note: If you would like to time your analysis you can use the time program: `/us
 
 ## 4. View the meta-analysis results
 
-Some informative output was printing to stdout as METAL was running.  
+Some informative output was printing to stdout as METAL was running. Check out the information there. 
 ****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
 
 There will be a .tbl and .tbl.info file created from the meta-analysis. You can use `less` to view the files.
+In terminal:
+```
+less 
+```
 
 ****Do you think we will we use the same genome wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
 
