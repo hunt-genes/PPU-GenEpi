@@ -1,5 +1,8 @@
 # DAY 5 - Meta-analysis for quantitative traits using METAL
 
+Please fill the following form during the exercise today: https://nettskjema.no/a/284235
+Thank you!
+
 ## FOCUS and LEARNING GOALS
 
 >  The aim for this session is to get familiar with running a genome wide association study meta-analysis which enables researchers to  gather data from many studies and analyse them together. 
@@ -70,7 +73,6 @@ In terminal:
 ```
 cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main
 ```
-
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
 The latest human reference genome GRCh38 was released from the Genome Reference Consortium on 17 December 2013.  
 The previous human reference genome (GRCh37) was the nineteenth version (hg19).  
@@ -117,17 +119,22 @@ join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk
 ****What is the header? What does the `-n 1` parameter do in `head`?****
 In terminal: 
 ```
+#Use head to check the headers
 head -n 1 BBJ-LDL-alphaNumID-preMeta.txt
 head -n 1 HUNT-LDL-alphaNumID-preMeta.txt
 head -n 1 GLGC-LDL-hg38-alphaNumID-preMeta.txt
 ```
 
 ****Are your SNPIDs across the files formatted in the same way?****
-`head -n 2 BBJ-LDL-alphaNumID-preMeta.txt | cut -f BBJ-LDL-alphaNumID-preMeta.txt`
+```
+#Use head to check SNPID formatting
+head -n 2 BBJ-LDL-alphaNumID-preMeta.txt | cut -f BBJ-LDL-alphaNumID-preMeta.txt
+```
 
 ### 2.3 How many variants will we be meta-analyzing?
 ****How many variants are in each of the files?****  
 ```
+#use the wc function to count the line numbers in the files
 wc -l BBJ-LDL-preMeta.txt
 wc -l HUNT-LDL-preMeta.txt
 wc -l GLGC-LDL-hg38-preMeta.txt
@@ -138,6 +145,7 @@ The HUNT summary statistics originally had many variants because imputation was 
 
 ****How many genome wide significant results are in each of the input files?****  
 ```
+#use awk to identify the rows that have a p-value < 5E-8
 awk '$11 < 5e-8 {print 0}' HUNT-LDL-preMeta.txt | wc -l
 awk '$11 < 5e-8 {print 0}' BBJ-LDL-preMeta.txt | wc -l
 awk '$10 < 5e-8 {print 0}' GLGC-LDL-hg38-preMeta.txt | wc -l
@@ -166,7 +174,7 @@ Input files:
 In terminal:
 ```
 bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
-#bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
+#For example: bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
 ```
 
 ### 3.2. Run metal with the config file (this should take less than 20 minutes)  
@@ -175,6 +183,7 @@ In terminal:
 ```
 #We need to tell the terminal where METAL is
 metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal
+
 #Run METAL using the config file
 $metal LDL_METAL.conf > LDL_METAL.log
 ```
