@@ -53,26 +53,21 @@ We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) usi
 Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC.
 
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
-`BBJ-LDL-alphaNumID-preMeta.txt`  
+`BBJ-LDL-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE      p.value log10P
 
 * The original summary statistics of joint analysis of metabochip and GWAS data for LDL cholesterol in N=89,138 from the Global Lipids Genetics Consortium (GLGC) can be found [here](http://csg.sph.umich.edu/willer/public/lipids2013/)  
-`GLGC-LDL-hg38-alphaNumID-preMeta.txt`  
+`GLGC-LDL-preMeta.txt`  
 The columns are SNP_hg18        SNP_hg19        rsid    A1      A2      beta    se      N       P-value Freq.A1.1000G.EUR
 
 * The summary statistics of LDL cholesterol from the HUNT study in N=67,429.   
-`HUNT-LDL-alphaNumID-preMeta.txt`  
+`HUNT-LDL-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE  p.value 
-CHRPOS chr start SNPID POS38 Allele2 CHRPOS37 rsid a2 Allele1 BETA SE N p.value AF_Allele2 CHR max min
 
 ## 2. Check your summary statistics to make sure they're ready for meta-analysis.
 
 ### 2.1 Which genome build is used?
 
-In terminal:
-```
-cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main
-```
 The human reference genome has been updated over the years and variants are given different coordinates in different versions. 
 The latest human reference genome GRCh38 was released from the Genome Reference Consortium on 17 December 2013.  
 The previous human reference genome (GRCh37) was the nineteenth version (hg19).  
@@ -84,7 +79,7 @@ You can see more [here](https://genome.ucsc.edu/FAQ/FAQreleases.html#release1). 
 It looks like BBJ and HUNT have SNP coordinates from hg38, but GLGC has summary statistics from hg18 and hg19. 
 We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-alphaNumID-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below in case you need them in the future.
 
-Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed`.
+Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed`. A [BED file](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) is not to be confused with the binary PLINK format .bed, but is a frequently used standard format for genetic data which is required to have chromosome, position start, and position end columns.
 In the terminal (ONLY FOR YOUR REFERENCE):
 ```
 awk 'NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4"\t"$5}' > GLCG.hg19.bed
@@ -103,8 +98,8 @@ Now `./filePath/utility_name` is executable.
 The liftover command requires 4 parameters in this order: 
 1) oldFile (in .bed format) 
 2) map.chain 
-3) newFile (just the name) 
-4) unMapped
+3) newFile (just the name for the new bed file) 
+4) unMapped (just the name for the unmapped variants)
 Execute this command:
 `liftOver GLCG.hg19.bed hg19ToHg38.over.chain GLGC.h38.bed GLGC.hg38.unmapped`
 
@@ -114,10 +109,16 @@ In terminal (ONLY FOR YOUR REFERENCE):
 join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt
 ```
 
-### 2.2 Check the file formats and headers
+### 2.2 Check the file formats and headers (START CODING HERE)
 
 ****What is the header? What does the `-n 1` parameter do in `head`?****
 In terminal: 
+
+```
+#change directory to working directory with the data
+cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main/Day5
+```
+
 ```
 #Use head to check the headers
 head -n 1 BBJ-LDL-alphaNumID-preMeta.txt
