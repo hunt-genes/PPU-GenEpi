@@ -12,8 +12,14 @@ Each folder (MR-Prac*) cotains the following:
 - data files (.txt, please download these, they will be loaded into R using the R script in R Studio)
 
 Note: Remember to set the working directory first when you open R,
-so you will need both setwd("C://Users/User/Dekstop/PPU-GenEpi-main/Day4/MR-Prac1/") 
-and setwd("C://Users/User/Dekstop/PPU-GenEpi-main/Day4/MR-Prac2/") today
+so you will need both here: 
+```
+setwd("C://Users/User/Dekstop/PPU-GenEpi-main/Day4/MR-Prac1/") 
+```
+and 
+```
+setwd("C://Users/User/Dekstop/PPU-GenEpi-main/Day4/MR-Prac2/")
+```
 
 ## Remember to do the quiz when you are finished:
 https://nettskjema.no/a/284237
