@@ -6,11 +6,22 @@
 # University of Michigan
 
 options(stringsAsFactors=F)
-library("plotrix")
-library("data.table")
-library("RColorBrewer")
-library("optparse")
-
+if(!require(plotrix)){
+    install.packages("plotrix")
+    library("plotrix")
+}
+if(!require(data.table)){
+    install.packages("data.table")
+    library("data.table")
+}
+if(!require(RColorBrewer)){
+    install.packages("RColorBrewer")
+    library("RColorBrewer")
+}
+if(!require(optparse)){
+    install.packages("optparse")
+    library("optparse")
+}
 
 option_list <- list(
   make_option("--input", type="character", default="",
