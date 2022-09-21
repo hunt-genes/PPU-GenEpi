@@ -128,7 +128,7 @@ head -n 2 BBJ-LDL-preMeta.txt | cut -f 3
 head -n 2 GLGC-LDL-hg38-preMeta.txt | cut -f 3
 head -n 2 HUNT-LDL-preMeta.txt | cut -f 3 
 ```
-No, the GLGC file uses an rsID, but the other files have a SNPID in chr:pos:A1:A2 format. That's ok, we can tell METAL where the information is within each file.
+Yes, we need the SNPID to be consistent across files. The header could be called something different, but the software will match the markers across studies based on the column. 
 
 ### 2.3 How many variants will we be meta-analyzing?
 ****How many variants are in each of the files?****  
@@ -170,7 +170,7 @@ Input files:
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
 ### 3.1. Create config file
-A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix. Because the headers of the files are different, the script is written to accomodate this, and the order of the file names provided is important. 
+A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.
 
 In terminal:
 ```
@@ -199,7 +199,7 @@ While the meta-analysis runs, consider the following questions:
 
 ## 4. View the meta-analysis results
 
-Some informative output was printing to "standard output" as METAL was running. Check out the information there. Just so you know, "standard output" is called stdout, and in the terminal, stdout defaults to the user's screen.
+Some informative output was printing to "standard output" as METAL was running. We saved it in a file named `LDL_METAL.log`. Check out the information there. Just so you know, "standard output" is called stdout, and in the terminal, stdout defaults to the user's screen.
 ****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
 
 There will be a .tbl and .tbl.info file created from the meta-analysis. You can use `less` to view the files.
@@ -207,12 +207,13 @@ There will be a .tbl and .tbl.info file created from the meta-analysis. You can 
 In terminal:
 ```
 less METAANALYSIS1.tbl
+less METAANALYSIS1.tbl.info
 ```
 
-****Do you think we will we use the same genome wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
+****Do you think we will we use the same genome-wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
 
-****How many genome wide significant results are there now?****  
-HINT: Use code like in 2.3 but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
+****How many genome-wide significant results are there now?****  
+HINT: Use code like in *2.3* but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
 
 ## 5. Subset to markers in more than 1 study
 Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
@@ -221,7 +222,7 @@ METAL will perform a meta-analysis even on markers which are only present in one
 The column labelled "direction" shows '?', '+', or '-' to indicate missingness, positive direction of effect, or negative direction of effect, respectively.  
 One can use the `subset_meta_analysis.r` Rscript to exclude markers with more than one '?'. This is R code like we use in RStudio, but it's packaged in a script so we can call it from the command line and pass it parameters, like the input file.
 
-In terminal:
+In terminal (ONLY FOR YOUR REFERENCE):
 ```
 #subset the results to variants with more than 1 study, may take 5 minutes
 Rscript subset_meta_analysis.r --input LDL_METAL_META1.tbl --output LDL_METAL_MultiStudy.txt
@@ -234,7 +235,7 @@ To visually inspect your results for significant findings you can make a QQ-plot
 
 In terminal:
 ```
-#make a QQplot using a script
+#make a QQplot using an Rscript
 Rscript QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120
 ```
 The image file should exist in whatever the default directory your R is writing into, which should be your current working directory. You can find this with `pwd`. Open the file to inspect the QQ-plot.
