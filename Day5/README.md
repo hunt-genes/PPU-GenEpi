@@ -170,12 +170,11 @@ Input files:
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
 ### 3.1. Create config file
-A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.  
+A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix. Because the headers of the files are different, the script is written to accomodate this, and the order of the file names provided is important. 
 
 In terminal:
 ```
-bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
-#For example: bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
+bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
 ```
 
 ### 3.2. Run metal 
