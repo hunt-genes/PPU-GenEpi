@@ -77,7 +77,7 @@ You can see more [here](https://genome.ucsc.edu/FAQ/FAQreleases.html#release1). 
 ****From the summary statistic headers, can you tell what reference genome versions are used for each study?****  
 
 It looks like BBJ and HUNT have SNP coordinates from hg38, but GLGC has summary statistics from hg18 and hg19. 
-We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-alphaNumID-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below in case you need them in the future.
+We can use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already did this for you: `GLGC-LDL-hg38-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below in case you need them in the future.
 
 Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed`. A [BED file](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) is not to be confused with the binary PLINK format .bed, but is a frequently used standard format for genetic data which is required to have chromosome, position start, and position end columns.
 In the terminal (ONLY FOR YOUR REFERENCE):
@@ -101,17 +101,12 @@ The liftover command requires 4 parameters in this order:
 3) newFile (just the name for the new bed file) 
 4) unMapped (just the name for the unmapped variants)
 Execute this command:
-`liftOver GLCG.hg19.bed hg19ToHg38.over.chain GLGC.h38.bed GLGC.hg38.unmapped`
-
-In terminal (ONLY FOR YOUR REFERENCE):
-```
-#Create the a hg38 summary statistics file with compatible header for METAL
-join -1 4 -2 2 <(sort -k 4 GLGC.hg38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt
-```
+`liftOver GLCG.hg19.bed hg19ToHg38.over.chain GLGC.hg38.bed GLGC.hg38.unmapped`
+Use R or another tool to merge GLGC.hg38.bed and GLGC-LDL-preMeta.txt (the hg19 position should be shared between them).
 
 ### 2.2 Check the file formats and headers (START CODING HERE)
 
-****What is the header? What does the `-n 1` parameter do in `head`?****
+****What is the header of each file? What does the `-n 1` parameter do in `head`?****
 In terminal: 
 
 ```
@@ -121,16 +116,19 @@ cd /mnt/c/Users/user/Desktop/PPU-GenEpi-main/Day5
 
 ```
 #Use head to check the headers
-head -n 1 BBJ-LDL-alphaNumID-preMeta.txt
-head -n 1 HUNT-LDL-alphaNumID-preMeta.txt
-head -n 1 GLGC-LDL-hg38-alphaNumID-preMeta.txt
+head -n 1 BBJ-LDL-preMeta.txt
+head -n 1 HUNT-LDL-preMeta.txt
+head -n 1 GLGC-LDL-hg38-preMeta.txt
 ```
 
 ****Are your SNPIDs across the files formatted in the same way?****
 ```
 #Use head to check SNPID formatting
-head -n 2 BBJ-LDL-alphaNumID-preMeta.txt | cut -f BBJ-LDL-alphaNumID-preMeta.txt
+head -n 2 BBJ-LDL-preMeta.txt | cut -f 3 
+head -n 2 GLGC-LDL-hg38-preMeta.txt | cut -f 3
+head -n 2 HUNT-LDL-preMeta.txt | cut -f 3 
 ```
+No, the GLGC file uses an rsID, but the other files have a SNPID in chr:pos:A1:A2 format. That's ok, we can tell METAL where the information is within each file.
 
 ### 2.3 How many variants will we be meta-analyzing?
 ****How many variants are in each of the files?****  
@@ -140,11 +138,12 @@ wc -l BBJ-LDL-preMeta.txt
 wc -l HUNT-LDL-preMeta.txt
 wc -l GLGC-LDL-hg38-preMeta.txt
 ```
-The HUNT summary statistics originally had many variants because imputation was done with the TOPMed imputation panel, which allows for higher resolution imputation due to the large amount of sequencing samples which make up the reference panel. We have subsetted the HUNT file to include only variants seen in GLGC or BBJ. This makes the file a more manageable size, and we only will perform meta-analysis on variants tested in 2 or more studies.
+The HUNT summary statistics originally had millions of variants because imputation was done with the TOPMed imputation panel, which allows for higher resolution imputation due to the large amount of sequencing samples which make up the reference panel. We have subsetted the input files to only include variants seen in all 3 studies. We only want to perform meta-analysis on variants tested in 2 or more studies.
 
 ****What imputation panel was used for GLGC?**** HINT:Check the methods of the [paper](https://www.nature.com/articles/ng.2797).  
 
 ****How many genome wide significant results are in each of the input files?****  
+In terminal:
 ```
 #use awk to identify the rows that have a p-value < 5E-8
 awk '$11 < 5e-8 {print 0}' HUNT-LDL-preMeta.txt | wc -l
