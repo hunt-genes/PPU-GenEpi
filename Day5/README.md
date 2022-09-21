@@ -55,14 +55,17 @@ Usually you would download publically available summary statistics from the inte
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
 `BBJ-LDL-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE      p.value log10P
+The best estimate is in terms of Allele2.
 
 * The original summary statistics of joint analysis of metabochip and GWAS data for LDL cholesterol in N=89,138 from the Global Lipids Genetics Consortium (GLGC) can be found [here](http://csg.sph.umich.edu/willer/public/lipids2013/)  
 `GLGC-LDL-preMeta.txt`  
 The columns are SNP_hg18        SNP_hg19        rsid    A1      A2      beta    se      N       P-value Freq.A1.1000G.EUR
+The beta estimate is in terms of Allele 1.
 
 * The summary statistics of LDL cholesterol from the HUNT study in N=67,429.   
 `HUNT-LDL-preMeta.txt`  
 The columns are CHR     POS38   SNPID   Allele1 Allele2 AC_Allele2      AF_Allele2      N       BETA    SE  p.value 
+The beta estimate is in terms of Allele2. 
 
 ## 2. Check your summary statistics to make sure they're ready for meta-analysis.
 
@@ -251,5 +254,8 @@ cat *_lambda.txt
 
 #### 6.2 Forest plot
 Another useful comparison of input studies and the meta-analysis is a Forest plot. You can read more about R code to make this plot [here](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html).
+
+#### 6.3 Open Targets
+Check out the APOE region on the [Open Targets platform](https://genetics.opentargets.org/variant/19_44886339_G_A).
 
 I would also recommend [this example](https://www.mv.helsinki.fi/home/mjxpirin/GWAS_course/material/GWAS9.html) of a meta-analysis by Matti Pirinen at the University of Helsinki using R.
