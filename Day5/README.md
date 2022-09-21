@@ -1,5 +1,8 @@
 # DAY 5 - Meta-analysis for quantitative traits using METAL
 
+Please fill the following form during the exercise today: https://nettskjema.no/a/284235
+Thank you!
+
 ## FOCUS and LEARNING GOALS
 
 >  The aim for this session is to get familiar with running a genome wide association study meta-analysis which  enables researchers to  gather data from many studies and analyse them together. 
