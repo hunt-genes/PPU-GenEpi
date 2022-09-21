@@ -240,6 +240,7 @@ In terminal:
 ```
 #make a QQplot using an Rscript
 /mnt/c/Program\ Files/R/R-4.2.1/bin/x64/Rscript.exe QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120
+#if this doesn't work, open QQplot_manual.r in RStudio. Add in the file names and parameters to run it.
 ```
 The image file should exist in whatever the default directory your R is writing into, which should be your current working directory. You can find this with `pwd`. Open the file to inspect the QQ-plot.
 
@@ -254,6 +255,10 @@ cat *_lambda.txt
 
 #### 6.2 Forest plot
 Another useful comparison of input studies and the meta-analysis is a Forest plot. You can read more about R code to make this plot [here](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html).
+
+In RStudio:
+Open the ForestPlot.R script
+Run the code line by lineto generate a forest plot. 
 
 #### 6.3 Open Targets
 Check out the APOE region on the [Open Targets platform](https://genetics.opentargets.org/variant/19_44886339_G_A).
