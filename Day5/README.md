@@ -1,11 +1,8 @@
 # DAY 5 - Meta-analysis for quantitative traits using METAL
 
-Please fill the following form during the exercise today: https://nettskjema.no/a/284235
-Thank you!
-
 ## FOCUS and LEARNING GOALS
 
->  The aim for this session is to get familiar with running a genome wide association study meta-analysis which  enables researchers to  gather data from many studies and analyse them together. 
+>  The aim for this session is to get familiar with running a genome wide association study meta-analysis which enables researchers to  gather data from many studies and analyse them together. 
 
 There are several motivations for meta-analysis. One is the ability to increase power to detect small effect sizes or rare variant effects by increasing the study sample size. Many methods for meta analysis rely on using summary statistics therefore rendering the need to share individual level data unnecessary. This makes it easier to share data for meta analysis as the summary statistics are not deemed sensitive information and are typically made publicly available when papers are published in peer-reviewed journals. Finally, meta-analysis across genetic ancestries is the most statistically robust approach rather than pooling all ancestries together in one GWAS as it results in little or no loss of efficiency (as compared to analysis of combined data-sets) and reduces population stratification.
 Some [slides](SMED8020_2022_MetaAnalysis.pdf) with extra informaiton may be helpful.  
@@ -51,11 +48,6 @@ When running a meta analysis there are many issues that need to be addressed.
 We have [installed METAL](http://csg.sph.umich.edu/abecasis/Metal/download/) using the pre-compiled binaries for you. 
 
 Usually you would download publically available summary statistics from the internet to your local machine. For convience for this practical, we have already downloadeded summary statistics from 3 studies, BBJ, HUNT, and GLGC.
-
-In terminal: 
-```
-C:\Users\User\Desktop\PPU-GenEpi-main\Day5
-```
 
 * The original summary statistics from Biobank Japan (BBJ) of LDL cholesterol in N=72,866 can be found [here](https://humandbs.biosciencedbc.jp/files/hum0014/hum0014_README_QTL_GWAS.html)  
 `BBJ-LDL-alphaNumID-preMeta.txt`  
@@ -115,7 +107,7 @@ Execute this command:
 
 Look in GLGC.hg38.unmapped. ****Were there some markers that did not get converted from hg19 to hg38? Why do you think that is?****  
 
-Create the a hg38 summary statisticsfile with compatible header for METAL:
+Create the a hg38 summary statistics file with compatible header for METAL:
 ```
 join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt
 ```
@@ -153,7 +145,7 @@ awk '$10 < 5e-8 {print 0}' GLGC-LDL-hg38-preMeta.txt | wc -l
 
 ## 3. Running METAL   
 
-The [Wiki page for METAL](https://genome.sph.umich.edu/wiki/METAL_Documentation#Brief_Description)  may be useful.
+The [Wiki page for METAL](https://genome.sph.umich.edu/wiki/METAL_Documentation#Brief_Description) may be useful.
 
 Input files: 
 * A text file for each study with results, summarized as a table. NB column separators must be specified. 
@@ -170,19 +162,25 @@ Input files:
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
 ### 3.1. A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.  
+
+In terminal:
 ```
 bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
 #bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
 ```
 
 ### 3.2. Run metal with the config file (this should take less than 20 minutes)  
-We need to tell the terminal where METAL is:
-```metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal```
-Run METAL
-```$metal LDL_METAL.conf > LDL_METAL.log```
+
+In terminal:
+```
+#We need to tell the terminal where METAL is
+metal=/mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal
+#Run METAL using the config file
+$metal LDL_METAL.conf > LDL_METAL.log
+```
 Note: If you would like to time your analysis you can use the time program: `/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
-While it runs, consider the following questions:
+While the meta-analysis runs, consider the following questions:
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
 ****Did you use genomic control? In what situations is it useful to use genomic control?****  
 ****What does it mean to set the minimum weight to 10,000?****   
@@ -191,39 +189,55 @@ While it runs, consider the following questions:
 
 ## 4. View the meta-analysis results
 
-Some informative output was printing to stdout as METAL was running. Check out the information there. 
+Some informative output was printing to "standard output" as METAL was running. Check out the information there. Just so you know, "standard output" is called stdout, and in the terminal, stdout defaults to the user's screen.
 ****What was the smallest p-value and how many markers was the meta-analysis completed for?****  
 
 There will be a .tbl and .tbl.info file created from the meta-analysis. You can use `less` to view the files.
+
 In terminal:
 ```
-less 
+less METAANALYSIS1.tbl
 ```
 
 ****Do you think we will we use the same genome wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
 
-****How many genome wide significant results are there now?**** HINT: Use code like in 2.3 but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
+****How many genome wide significant results are there now?****  
+HINT: Use code like in 2.3 but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
 
 ## 5. Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
 
 METAL will perform a meta-analysis even on markers which are only present in one of the sub-studies. We are only interested in markers present in more than one study. 
 The column labelled "direction" shows '?', '+', or '-' to indicate missingness, positive direction of effect, or negative direction of effect, respectively.  
-One can use the `subset_meta_analysis.r` Rscript to exclude markers with more than one '?'.  
-Execute the following command to subset the results. This will take < 5 minutes.  
+One can use the `subset_meta_analysis.r` Rscript to exclude markers with more than one '?'. This is R code like we use in RStudio, but it's packaged in a script so we can call it from the command line and pass it parameters, like the input file.
+
+In terminal:
 ```
+#subset the results to variants with more than 1 study, may take 5 minutes
 Rscript subset_meta_analysis.r --input LDL_METAL_META1.tbl --output LDL_METAL_MultiStudy.txt
 ```
 
 ## 6. Plot the meta-analysis results
 
-To visually inspect your results for significant findings you can make a QQ-plot like Day 4's practical. 
+#### 6.1 QQ-plot
+To visually inspect your results for significant findings you can make a QQ-plot. We have a script `QQplot.R` which creates an image file with the plot and a text file with lambda values.
+
+In terminal:
 ```
+#make a QQplot using a script
 Rscript QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120
 ```
-The file should exist in whatever the default directory your R is writing into. You can find this with `pwd`. 
+The image file should exist in whatever the default directory your R is writing into, which should be your current working directory. You can find this with `pwd`. Open the file to inspect the QQ-plot.
 
 ****How does the inflation appear to you?****  
 
 ****What is the lambda value for the smallest minor allele frequency (MAF) bin?****  
-```cat *_lambda.txt
+In terminal:
 ```
+#use cat to view the file of lambda values
+cat *_lambda.txt
+```
+
+#### 6.2 Forest plot
+Another useful comparison of input studies and the meta-analysis is a Forest plot. You can read more about R code to make this plot [here](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html).
+
+I would also recommend [this example](https://www.mv.helsinki.fi/home/mjxpirin/GWAS_course/material/GWAS9.html) of a meta-analysis by Matti Pirinen at the University of Helsinki using R.
