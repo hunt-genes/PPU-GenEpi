@@ -12,7 +12,7 @@ Each folder (MR-Prac*) cotains the following:
 - data files (.txt, please download these, they will be loaded into R using the R script in R Studio)
 
 ## Remember to do the quiz when you are finished:
-[https://nettskjema.no/a/284237]
+https://nettskjema.no/a/284237
 
 Thank you!
 Please ask the tutors for help if you have any trouble.
