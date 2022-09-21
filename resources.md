@@ -4,35 +4,35 @@ List of resources to share for learning
 # Learning R
 * [swirl](https://swirlstats.com/): R package that turns your R consule into a learning environment, for beginners
 * [Riffomonas](https://riffomonas.org/): University of Michigan professor makes tutorials and YouTube videos 
-* [CodeAcademy](https://www.codecademy.com/learn/learn-r) *note this is paid*. 
-* [Cookbook for R](http://www.cookbook-r.com/) Solutions to common tasks with code examples
-* [DataCamp](https://www.datacamp.com/) Need to register but introductory courses and chapters of modules are free
-* [R Tutorial by RBloggers](https://www.r-bloggers.com/2015/12/how-to-learn-r-2/) Learning path that brings together many resources
+* [CodeAcademy](https://www.codecademy.com/learn/learn-r): Modules for R *note this is paid*. 
+* [Cookbook for R](http://www.cookbook-r.com/): Solutions to common tasks with code examples
+* [DataCamp](https://www.datacamp.com/): Need to register but introductory courses and chapters of modules are free
+* [R Tutorial by RBloggers](https://www.r-bloggers.com/2015/12/how-to-learn-r-2/): Learning path that brings together many resources
 * [More R resources for free](https://www.r-bloggers.com/2016/02/learning-r-for-free-free-online-resources/)
 
 # Learning Python
 * [Girls Who Code at UM DCMB](https://github.com/GWC-DCMB/GWC-DCMB/blob/master/get-started.md): Python notebooks you can use to learn data science for Python
-* [Google's Python class](https://developers.google.com/edu/python): for people with a little programming experience who want to learn Python; has videos and code exercises
+* [Google's Python class](https://developers.google.com/edu/python): For people with a little programming experience who want to learn Python; has videos and code exercises
 * [Python documentation](https://docs.python.org/3/)
-* [LearnPython](https://www.learnpython.org/) Free interactive Python tutorial
+* [LearnPython](https://www.learnpython.org/): Free interactive Python tutorial
 
 # Stats
 * [StatQuest](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw)
 
 # Genomics Tools 
-* [gnomAD browser](https://gnomad.broadinstitute.org/) Aggregating exome and genome sequencing data
-* [PLINK](https://www.cog-genomics.org/plink/) Tool for storing and analyzing genomic data
-* [UCSC Genome Browser](https://genome.ucsc.edu/) Integrate datasets to understand the genome
-* [OpenTargets](https://www.opentargets.org/) Using human genetics for systematic drug discovery
-* [GWAS Catalog](https://www.ebi.ac.uk/gwas/) Browse published genome wide association summary statistics
-* [PGS Catalog](https://www.pgscatalog.org/) Download markers and weights from published polygenic risk scores
-* [HaploReg](https://pubs.broadinstitute.org/mammals/haploreg/haploreg_v4.php) Tool for exploring annotations of the noncoding genome at variants on haplotype blocks
-* [TOPMed BRAVO](https://bravo.sph.umich.edu/freeze8/hg38/) Browse genetic variants from TOPMed
+* [gnomAD browser](https://gnomad.broadinstitute.org/): Aggregating exome and genome sequencing data
+* [PLINK](https://www.cog-genomics.org/plink/): Tool for storing and analyzing genomic data
+* [UCSC Genome Browser](https://genome.ucsc.edu/): Integrate datasets to understand the genome
+* [OpenTargets](https://www.opentargets.org/): Using human genetics for systematic drug discovery
+* [GWAS Catalog](https://www.ebi.ac.uk/gwas/): Browse published genome wide association summary statistics
+* [PGS Catalog](https://www.pgscatalog.org/): Download markers and weights from published polygenic risk scores
+* [HaploReg](https://pubs.broadinstitute.org/mammals/haploreg/haploreg_v4.php): Tool for exploring annotations of the noncoding genome at variants on haplotype blocks
+* [TOPMed BRAVO](https://bravo.sph.umich.edu/freeze8/hg38/): Browse genetic variants from TOPMed
 
 # Biomedical research tools
-* [BioConda](https://bioconda.github.io/) Python software packages for biomedical research 
-* [Type 2 diabetes Knowledge Portal](https://t2d.hugeamp.org/) Data and tools for T2D research
-* [Cardiovascular disease knowledge portal](https://cvd.hugeamp.org/) Data and tools for CVD research
+* [BioConda](https://bioconda.github.io/): Python software packages for biomedical research 
+* [Type 2 diabetes Knowledge Portal](https://t2d.hugeamp.org/): Data and tools for T2D research
+* [Cardiovascular disease knowledge portal](https://cvd.hugeamp.org/): Data and tools for CVD research
 
 # UNIX Cheat Sheet
 * `ssh user@server`: Start SSH sessiom (exit with exit)
