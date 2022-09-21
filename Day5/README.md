@@ -169,7 +169,8 @@ Input files:
   * A column indicating the standard error of this effect size estimate 
   * The header for each of these columns must be specified so that METAL knows how to interpret the data. 
  
-### 3.1. A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.  
+### 3.1. Create config file
+A shell wrapper script will be used to create the config file needed to run METAL. This script, `LDL_metal.sh`, has been created for you. Create a config file with the bash script `LDL_METAL.sh` by filling in the appropriate arguments instead of "file1",  "file2",  "file3" and using "LDL_METAL" as your output prefix.  
 
 In terminal:
 ```
@@ -177,7 +178,8 @@ bash LDL_METAL.sh  file1 file2 file3 LDL_METAL > LDL_METAL.conf
 #For example: bash LDL_metal.sh HUNT-LDL-preMeta.txt GLGC-LDL-hg38-preMeta.txt BBJ-LDL-preMeta.txt LDL_METAL_META > LDL_METAL.conf
 ```
 
-### 3.2. Run metal with the config file (this should take less than 20 minutes)  
+### 3.2. Run metal 
+We will run METAL with the config file we just made. This should take less than 20 minutes.
 
 In terminal:
 ```
@@ -213,7 +215,8 @@ less METAANALYSIS1.tbl
 ****How many genome wide significant results are there now?****  
 HINT: Use code like in 2.3 but replace `$10` with the column number that has the p-value and use the file name for your meta-analysis results.
 
-## 5. Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
+## 5. Subset to markers in more than 1 study
+Note: We pre-processed the files so you don't have to subset the results to markers in >1 study, but you might need this information in the future if you have not pre-processed your input files.
 
 METAL will perform a meta-analysis even on markers which are only present in one of the sub-studies. We are only interested in markers present in more than one study. 
 The column labelled "direction" shows '?', '+', or '-' to indicate missingness, positive direction of effect, or negative direction of effect, respectively.  
