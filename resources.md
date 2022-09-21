@@ -6,11 +6,15 @@ List of resources to share for learning
 * [Riffomonas](https://riffomonas.org/): University of Michigan professor makes tutorials and YouTube videos 
 * [CodeAcademy](https://www.codecademy.com/learn/learn-r) *note this is paid*. 
 * [Cookbook for R](http://www.cookbook-r.com/) Solutions to common tasks with code examples
+* [DataCamp](https://www.datacamp.com/) Need to register but introductory courses and chapters of modules are free
+* [R Tutorial by RBloggers](https://www.r-bloggers.com/2015/12/how-to-learn-r-2/) Learning path that brings together many resources
+* [More R resources for free](https://www.r-bloggers.com/2016/02/learning-r-for-free-free-online-resources/)
 
 # Learning Python
 * [Girls Who Code at UM DCMB](https://github.com/GWC-DCMB/GWC-DCMB/blob/master/get-started.md): Python notebooks you can use to learn data science for Python
 * [Google's Python class](https://developers.google.com/edu/python): for people with a little programming experience who want to learn Python; has videos and code exercises
 * [Python documentation](https://docs.python.org/3/)
+* [LearnPython](https://www.learnpython.org/) Free interactive Python tutorial
 
 # Stats
 * [StatQuest](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw)
@@ -22,7 +26,7 @@ List of resources to share for learning
 * [OpenTargets](https://www.opentargets.org/) Using human genetics for systematic drug discovery
 * [GWAS Catalog](https://www.ebi.ac.uk/gwas/) Browse published genome wide association summary statistics
 * [PGS Catalog](https://www.pgscatalog.org/) Download markers and weights from published polygenic risk scores
-* [HaploReg](https://pubs.broadinstitute.org/mammals/haploreg/haploreg_v4.php)
+* [HaploReg](https://pubs.broadinstitute.org/mammals/haploreg/haploreg_v4.php) Tool for exploring annotations of the noncoding genome at variants on haplotype blocks
 * [TOPMed BRAVO](https://bravo.sph.umich.edu/freeze8/hg38/) Browse genetic variants from TOPMed
 
 # Biomedical research tools
@@ -59,7 +63,7 @@ List of resources to share for learning
 *  `sort <file> | uniq`: Find the unique elements in a list, need to sort first
 *  `sort <file> | uniq -c`: Count how many times you see each unique element
 * Control-c : Sends interrupt signal, can be used to get to a new line
-* Contorl-k: Delete everything on the line
+* Control-k: Delete everything on the line
 * Control-a: Jump to the front of the line
 * Control-e: Jump to the end of the line
 * `*`: wild card; you can use like `ls *.gz` to list anything with the `.gz`. suffix 
