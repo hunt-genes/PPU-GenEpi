@@ -2,25 +2,33 @@
 List of resources to share for learning
 
 # Learning R
-* [swirl](https://swirlstats.com/)
-* [Riffomonas](https://riffomonas.org/)
+* [swirl](https://swirlstats.com/): R package that turns your R consule into a learning environment, for beginners
+* [Riffomonas](https://riffomonas.org/): University of Michigan professor makes tutorials and YouTube videos 
 * [CodeAcademy](https://www.codecademy.com/learn/learn-r) *note this is paid*. 
+* [Cookbook for R](http://www.cookbook-r.com/) Solutions to common tasks with code examples
 
 # Learning Python
-* [Girls Who Code at UM DCMB](https://github.com/GWC-DCMB/GWC-DCMB/blob/master/get-started.md)
+* [Girls Who Code at UM DCMB](https://github.com/GWC-DCMB/GWC-DCMB/blob/master/get-started.md): Python notebooks you can use to learn data science for Python
+* [Google's Python class](https://developers.google.com/edu/python): for people with a little programming experience who want to learn Python; has videos and code exercises
+* [Python documentation](https://docs.python.org/3/)
 
 # Stats
 * [StatQuest](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw)
 
 # Genomics Tools 
-* [gnomAD browser](https://gnomad.broadinstitute.org/)
-* [PLINK](https://www.cog-genomics.org/plink/)
-* [UCSC Genome Browser](https://genome.ucsc.edu/)
-* [OpenTargets](https://www.opentargets.org/)
-* [GWAS Catalog](https://www.ebi.ac.uk/gwas/)
-* [PGS Catalog](https://www.pgscatalog.org/)
+* [gnomAD browser](https://gnomad.broadinstitute.org/) Aggregating exome and genome sequencing data
+* [PLINK](https://www.cog-genomics.org/plink/) Tool for storing and analyzing genomic data
+* [UCSC Genome Browser](https://genome.ucsc.edu/) Integrate datasets to understand the genome
+* [OpenTargets](https://www.opentargets.org/) Using human genetics for systematic drug discovery
+* [GWAS Catalog](https://www.ebi.ac.uk/gwas/) Browse published genome wide association summary statistics
+* [PGS Catalog](https://www.pgscatalog.org/) Download markers and weights from published polygenic risk scores
 * [HaploReg](https://pubs.broadinstitute.org/mammals/haploreg/haploreg_v4.php)
-* [TOPMed BRAVO](https://bravo.sph.umich.edu/freeze8/hg38/)
+* [TOPMed BRAVO](https://bravo.sph.umich.edu/freeze8/hg38/) Browse genetic variants from TOPMed
+
+# Biomedical research tools
+* [BioConda](https://bioconda.github.io/) Python software packages for biomedical research 
+* [Type 2 diabetes Knowledge Portal](https://t2d.hugeamp.org/) Data and tools for T2D research
+* [Cardiovascular disease knowledge portal](https://cvd.hugeamp.org/) Data and tools for CVD research
 
 # UNIX Cheat Sheet
 * `ssh user@server`: Start SSH sessiom (exit with exit)
@@ -45,6 +53,11 @@ List of resources to share for learning
 *  `apt install <package>`: Install a package 
 *  `echo "your text here"`: displaying lines of text passed 
 *  `<command> | <command>`: The pipe signal passes the output from command 1 into command 2
+*  `grep "string" <file> `: Searches for a string in a file
+*  `sort <file>`: Sorts a file alphabetically or numerically, can use -k to specify specific columns
+*  `cut -f 1 <file>`: Cut the first column from a file
+*  `sort <file> | uniq`: Find the unique elements in a list, need to sort first
+*  `sort <file> | uniq -c`: Count how many times you see each unique element
 * Control-c : Sends interrupt signal, can be used to get to a new line
 * Contorl-k: Delete everything on the line
 * Control-a: Jump to the front of the line
@@ -53,6 +66,7 @@ List of resources to share for learning
 * `>`: write to a file; you can use like `echo "my text" > my_file` 
 * `>>`: append to a file; you an use like `echo "my text" > my_file` 
 * If you hit the arrow key upwards you can access previous commands
+* [Unix tutorial](https://www.coursera.org/learn/unix) on Coursera
 
 # Awk
 Awk is a language you can use on the command line. [User's Guide](https://www.gnu.org/software/gawk/manual/gawk.html)
