@@ -235,6 +235,9 @@ To visually inspect your results for significant findings you can make a QQ-plot
 
 In terminal:
 ```
+#set Rscript path
+Rscript=/mnt/c/Program\ Files/R/R-4.2.1/bin/Rscript.exe
+
 #make a QQplot using an Rscript
 Rscript QQplot.r --input LDL_METAL_META1.tbl --pvalue P-value --af Freq1 --prefix LDL_METAL_MultiStudy --break.top 120
 ```
