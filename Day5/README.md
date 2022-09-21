@@ -78,18 +78,19 @@ The latest human reference genome GRCh38 was released from the Genome Reference 
 The previous human reference genome (GRCh37) was the nineteenth version (hg19).  
 The version before this was NCBI Build 36.1	released March 2006	(hg18). 
 You can see more [here](https://genome.ucsc.edu/FAQ/FAQreleases.html#release1). hg19 is still widely used and people are slowly converting to hg38.  
+
 ****From the summary statistic headers, can you tell what reference genome versions are used for each study?****  
 
 It looks like BBJ and HUNT have SNP coordinates from hg38, but GLGC has summary statistics from hg18 and hg19. 
-We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-alphaNumID-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below.
+We must use [UCSC listOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver) to convert the hg19 coordinates to hg38 before meta-analysis. We can use liftOver on the command line or via the web. To avoid extensive file manipulation on your part, we already used this .bed file to make a new version of the GLGC results: `GLGC-LDL-hg38-alphaNumID-preMeta.txt`. This file also has a header that is consistent with the other two files. You will use this in the meta-analysis. The instructions for using liftOver are below in case you need them in the future.
 
-Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed` in the following the command in terminal
+Create a .bed file file from GLGC-LDL-preMeta.txt using Linux tools `awk` and `sed`.
+In the terminal (ONLY FOR YOUR REFERENCE):
 ```
-awk 'NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-alphaNumID-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4}' > GLCG.hg19.bed
+awk 'NR > 1 {print $2"\t"$3"\t"$4"\t"$5}' GLGC-LDL-preMeta.txt | sed 's/:/\t/g' | awk '{print $1"\t"$2-1"\t"$2"\t"$1":"$2"\t"$4"\t"$5}' > GLCG.hg19.bed
 ```
-**Web option:**
-Upload the .bed file you made [here](http://genome.ucsc.edu/cgi-bin/hgLiftOver). 
-Go to **2.2**  
+**Web option (ONLY FOR YOUR REFERENCE):**
+Upload the `GLGC.hg.bed` file you made [here](http://genome.ucsc.edu/cgi-bin/hgLiftOver) if it's less than 500 mb. Select the genome you're coming from and the genome you're lifting over to.
 
 **Command line option (ONLY FOR YOUR REFERENCE):**
 [Download liftOver](https://hgdownload.soe.ucsc.edu/admin/exe/). 
@@ -107,10 +108,9 @@ The liftover command requires 4 parameters in this order:
 Execute this command:
 `liftOver GLCG.hg19.bed hg19ToHg38.over.chain GLGC.h38.bed GLGC.hg38.unmapped`
 
-Look in GLGC.hg38.unmapped. ****Were there some markers that did not get converted from hg19 to hg38? Why do you think that is?****  
-
-Create the a hg38 summary statistics file with compatible header for METAL:
+In terminal (ONLY FOR YOUR REFERENCE):
 ```
+#Create the a hg38 summary statistics file with compatible header for METAL
 join -1 4 -2 2 <(sort -k 4 GLGC.h38.bed) <(sort -k 2 GLGC-LDL-preMeta.txt) | awk -v OFS='\t' '{$5=toupper($5);$9=toupper($9)}1' | awk '{print $0"\t"substr($2, 4)"\t"$2":"$4":"$9":"$5}'  | sed  '1i\CHRPOS\tchr\tstart\tPOS38\tAllele2\tCHRPOS37\trsid\ta2\tAllele1\tBETA\tSE\tN\tp.value\tAF_Allele2\tCHR\tSNPID' > GLGC-LDL-hg38-preMeta.txt
 ```
 
