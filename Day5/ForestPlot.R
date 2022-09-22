@@ -3,7 +3,7 @@ library(ggplot2)
 hunt<-fread(file="HUNT-LDL-preMeta.txt")
 bbj<-fread(file="BBJ-LDL-preMeta.txt")
 glgc<-fread(file="GLGC-LDL-hg38-preMeta.txt")
-meta<-fread(file="METAANALYSIS1.TBL")
+meta<-fread(file="LDL_METAL_META1.tbl")
 
 #read in data for rs61679753 in APOE
 df<-rbind(glgc[glgc$SNPID=="19:44897490:A:T",],
