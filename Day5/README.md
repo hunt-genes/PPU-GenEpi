@@ -193,7 +193,7 @@ $metal LDL_METAL.conf > LDL_METAL.log
 ```
 Note: If you would like to time your analysis you can use the time program: `/usr/bin/time -o test_time -v $metal LDL_METAL.conf`
 
-While the meta-analysis runs, consider the following questions:
+While the meta-analysis runs, consider the following questions:  
 ****What type of meta-analysis did you run (fixed or random effects? sample size or inverse variance based?) What is the difference?****  
 ****Did you use genomic control? In what situations is it useful to use genomic control?****  
 ****What does it mean to set the minimum weight to 10,000?****   
@@ -209,8 +209,8 @@ There will be a .tbl and .tbl.info file created from the meta-analysis. You can 
 
 In terminal:
 ```
-less METAANALYSIS1.tbl
-less METAANALYSIS1.tbl.info
+less LDL_METAL_META1.tbl
+less LDL_METAL_META1.tbl.info
 ```
 
 ****Do you think we will we use the same genome-wide significance threshold (5xE-8) for the meta-analysis as we used for the GWAS? Why or why not?****  
