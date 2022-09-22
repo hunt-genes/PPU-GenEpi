@@ -235,12 +235,13 @@ In terminal (ONLY FOR YOUR REFERENCE):
 ```
 #subset the results to variants with more than 1 study, may take 5 minutes
 Rscript subset_meta_analysis.r --input LDL_METAL_META1.tbl --output LDL_METAL_MultiStudy.txt
+#if this doesn't work in the terminal, open subset_metal_analysis_manual.r. Add in the file names and parameters to run it.
 ```
 
 ## 6. Plot the meta-analysis results
 
 #### 6.1 QQ-plot
-To visually inspect your results for significant findings you can make a QQ-plot. We have a script `QQplot.R` which creates an image file with the plot and a text file with lambda values.
+To visually inspect your results for significant findings you can make a QQ-plot. We have a script `QQplot.R` which creates an image file with the plot and a text file with lambda values. You don't need RStudio for this.
 
 In terminal:
 ```
@@ -260,13 +261,16 @@ cat *_lambda.txt
 ```
 
 #### 6.2 Forest plot
-Another useful comparison of input studies and the meta-analysis is a Forest plot. You can read more about R code to make this plot [here](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html).
+Another useful comparison of input studies and the meta-analysis is a Forest plot. 
+You can read more about R code to make this plot [here](https://cran.r-project.org/web/packages/forestplot/vignettes/forestplot.html).
+
+We will make a Forest plot for a lead SNP in APOE.
 
 In RStudio:
-Open the ForestPlot.R script
-Run the code line by lineto generate a forest plot. 
+Open the ForestPlot.R script. 
+Run the code line by line to generate a forest plot. 
 
 #### 6.3 Open Targets
-Check out the APOE region on the [Open Targets platform](https://genetics.opentargets.org/variant/19_44886339_G_A).
+Check out the APOE region on the [Open Targets platform](https://genetics.opentargets.org/variant/19_44886339_G_A). This platform integrates a lot of data for interrogating genetic variants as drug targets.
 
 I would also recommend [this example](https://www.mv.helsinki.fi/home/mjxpirin/GWAS_course/material/GWAS9.html) of a meta-analysis by Matti Pirinen at the University of Helsinki using R.
