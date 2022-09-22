@@ -54,6 +54,7 @@ C:\\Users\\User\\Desktop\\PPU-GenEpi-main\\Day4\\MR-Prac2\\CHDestimates-BMI_SNPs
 /mnt/c/Users/User/Desktop/PPU-GenEpi-main/METAL/metal      
 
 [Updated day 5](https://ntnu.box.com/s/44eyx14yobvlupnzoh84ccyhgrk2jsds)
+[2nd updated day 5](https://ntnu.box.com/s/44eyx14yobvlupnzoh84ccyhgrk2jsds)
 
 Add RStudio shortcut to desktop: right click on the exe and sent to -> desktop
 
