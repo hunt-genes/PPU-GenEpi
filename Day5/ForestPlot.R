@@ -1,8 +1,8 @@
 library(ggplot2)
 #read in data frames
-hunt<-fread(file="best/HUNT-LDL-preMeta.txt")
-bbj<-fread(file="best/BBJ-LDL-preMeta.txt")
-glgc<-fread(file="best/GLGC-LDL-hg38-preMeta.txt")
+hunt<-fread(file="HUNT-LDL-preMeta.txt")
+bbj<-fread(file="BBJ-LDL-preMeta.txt")
+glgc<-fread(file="GLGC-LDL-hg38-preMeta.txt")
 meta<-fread(file="METAANALYSIS1.TBL")
 
 #read in data for rs61679753 in APOE
