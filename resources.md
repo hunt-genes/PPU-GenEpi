@@ -18,6 +18,7 @@ List of resources to share for learning
 
 # Stats
 * [StatQuest](https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw)
+* [Linear-regression](https://mlu-explain.github.io/linear-regression)
 
 # Genomics Tools 
 * [gnomAD browser](https://gnomad.broadinstitute.org/): Aggregating exome and genome sequencing data
